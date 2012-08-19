@@ -10,6 +10,7 @@ namespace CSLogoApplication
 
     public class Fractal
     {
+        // 
         public static string FRACTAL_KOCH = "Koch";
         public static string FRACTAL_KOCHWAIT = "Koch (wait)";
         public static string FRACTAL_KOCHEXTRA = "Koch extra";
