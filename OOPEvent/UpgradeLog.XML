@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="OOPEvent">
+</Property><Property Name="Solution File" Value="E:\workspacecsharp\VEP\OOPEvent\OOPEvent.sln">
+</Property><Property Name="User Options File" Value="E:\workspacecsharp\VEP\OOPEvent\OOPEvent.suo">
+</Property><Property Name="Date" Value="2012. február 25.">
+</Property><Property Name="Time" Value="9:27">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="OOPEvent.sln" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent.sln">
+</Event><Event ErrorLevel="0" Project="" Source="OOPEvent.suo" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent.suo">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\OOPEvent.csproj" Description="Project file successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\OOPEvent.csproj">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\FormOOPEvent.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\FormOOPEvent.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\FormOOPEvent.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\FormOOPEvent.Designer.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\IValueChange.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\IValueChange.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Program.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Program.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Properties\AssemblyInfo.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Properties\Resources.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Properties\Settings.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Test.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Test.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\TestValueEventHandler.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\TestValueEventHandler.cs">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Properties\Settings.settings" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\FormOOPEvent.resx" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\FormOOPEvent.resx">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\Properties\Resources.resx" Description="File successfully backed up as E:\workspacecsharp\VEP\OOPEvent\Backup\OOPEvent\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\OOPEvent.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="OOPEvent" Source="OOPEvent\OOPEvent.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="OOPEvent.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="OOPEvent.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="OOPEvent" Source="OOPEvent\OOPEvent.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

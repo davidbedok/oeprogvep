@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="QTetris">
+</Property><Property Name="Solution File" Value="E:\workspacecsharp\VEP\QTetris\QTetris.sln">
+</Property><Property Name="User Options File" Value="E:\workspacecsharp\VEP\QTetris\QTetris.suo">
+</Property><Property Name="Date" Value="2012. március 8.">
+</Property><Property Name="Time" Value="18:40">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="QTetris.sln" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris.sln">
+</Event><Event ErrorLevel="0" Project="" Source="QTetris.suo" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris.suo">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\QTetris.csproj" Description="Project file successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\QTetris.csproj">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Exceptions\BlockException.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Exceptions\BlockException.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Exceptions\EndOfGameException.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Exceptions\EndOfGameException.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemLMirror.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemLMirror.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemShortT.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemShortT.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItem\FallItem.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItem\FallItem.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemShortL.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemShortL.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemLine.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemLine.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemCube.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemCube.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemL.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemL.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemZ.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemZ.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItem\FallItemState.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItem\FallItemState.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItem\FallItemStateRow.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItem\FallItemStateRow.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItems\FallItemZMirror.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItems\FallItemZMirror.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\HighScore\HighScore.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\HighScore\HighScore.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\HighScore\HighScoreItem.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\HighScore\HighScoreItem.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\KeyMessageFilter.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\KeyMessageFilter.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Exceptions\NotSupportedDrawException.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Exceptions\NotSupportedDrawException.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Exceptions\NotSupportedMoveException.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Exceptions\NotSupportedMoveException.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Level\Level.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Level\Level.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Level\LevelItem.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Level\LevelItem.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\NewHighScoreForm.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\NewHighScoreForm.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\NewHighScoreForm.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\NewHighScoreForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Tetris\Tetris.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Tetris\Tetris.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\TetrisForm.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\TetrisForm.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\TetrisForm.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\TetrisForm.Designer.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Program.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Program.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Properties\AssemblyInfo.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Properties\Resources.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Properties\Settings.Designer.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Tetris\TetrisLego.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Tetris\TetrisLego.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\WindowsMessages.cs" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\WindowsMessages.cs">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\FallItem\FallItem.cd" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\FallItem\FallItem.cd">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\HighScore\HighScore.cd" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\HighScore\HighScore.cd">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\HighScore\HighScoreItem.cd" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\HighScore\HighScoreItem.cd">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Level\Level.cd" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Level\Level.cd">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Level\LevelItem.cd" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Level\LevelItem.cd">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Properties\Settings.settings" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\NewHighScoreForm.resx" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\NewHighScoreForm.resx">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\TetrisForm.resx" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\TetrisForm.resx">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\Properties\Resources.resx" Description="File successfully backed up as E:\workspacecsharp\VEP\QTetris\Backup\QTetris\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\QTetris.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="QTetris" Source="QTetris\QTetris.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="QTetris.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="QTetris.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="QTetris" Source="QTetris\QTetris.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

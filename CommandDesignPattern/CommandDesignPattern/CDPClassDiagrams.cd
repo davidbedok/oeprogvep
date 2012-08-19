@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CommandDesignPattern.Shape" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAIABIICAQAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>shapes\Shape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandDesignPattern.RectangleShape" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAIIIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>shapes\RectangleShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandDesignPattern.LineShape" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAEAAIIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>shapes\LineShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandDesignPattern.EmptyShape" Collapsed="true">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAIIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>shapes\EmptyShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandDesignPattern.EllipseShape" Collapsed="true">
+    <Position X="6.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAEAAIIIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>shapes\EllipseShape.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandDesignPattern.DrawCommand" Collapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>commands\DrawCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandDesignPattern.MoveCommand" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAEAAACAAAAAAAAAAIAAAAAAAAAEAAAAAAABAA=</HashCode>
+      <FileName>commands\MoveCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CommandDesignPattern.ChangeColorCommand" Collapsed="true">
+    <Position X="4.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAACAAAAAAIAAAAAAAAAAAAAAQAABAA=</HashCode>
+      <FileName>commands\ChangeColorCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CommandDesignPattern.EditorCommand">
+    <Position X="0.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>commands\EditorCommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

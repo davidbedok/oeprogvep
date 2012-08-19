@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="QTetris.FallItem" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAQSBIAAFEAAAAAGAKRAABAAAAIAECEQAAAAAAA4AA=</HashCode>
+      <FileName>FallItem\FallItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemCube" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemCube.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemL" Collapsed="true">
+    <Position X="2.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemLine" Collapsed="true">
+    <Position X="4.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemLine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemLMirror" Collapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemLMirror.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemShortL" Collapsed="true">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemShortL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemShortT" Collapsed="true">
+    <Position X="1.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemShortT.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemZ" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemZ.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="QTetris.FallItemZMirror" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FallItems\FallItemZMirror.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

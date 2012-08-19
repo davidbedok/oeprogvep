@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="QTetris.FallItemState">
+    <Position X="3.25" Y="1.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAACAAgAAAAAAAAAAAEAAAgAAAAAAA=</HashCode>
+      <FileName>FallItem\FallItemState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
