@@ -22,10 +22,16 @@ namespace Event
         {
             this.iProcess = new Process(Convert.ToInt32(tbMINVALUE.Text), Convert.ToInt32(tbMAXVALUE.Text));
 
+        
             this.iProcess.customHandler += new CustomEventHandler(iProcess_CustomEventHandler);
             this.iProcess.customHandler += new CustomEventHandler(iProcess_anotherCustomEventHandler);
 
             this.iProcess.handler += new EventHandler(iProcess_handler);
+
+            this.iProcess.handler += delegate
+            {
+                MessageBox.Show("From Anonymous method!");
+            };
 
             this.ProcessRefresh();
             this.bStep.Enabled = true;

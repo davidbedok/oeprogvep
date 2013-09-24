@@ -7,17 +7,18 @@ namespace Event
     public delegate void CustomEventHandler( string param );
 
     public class Process {
-        private int fStatus = 0;
+
         private readonly int MINSTATE = 0;
         private readonly int MAXSTATE = 100;
-
+        private int value = 0;
+        
         public event EventHandler handler;
         public event CustomEventHandler customHandler;
 
         public int Status
         {
-            get { return this.fStatus; }
-            set { this.fStatus = value; }
+            get { return this.value; }
+            set { this.value = value; }
         }
 
         public Process(int minstate, int maxstate )

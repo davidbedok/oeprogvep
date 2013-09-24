@@ -64,7 +64,7 @@ namespace PersonNamespace
         {
             if (this.person != null)
             {
-                person.FamilyName = this.tbFamilyName.Text;
+                this.person.FamilyName = this.tbFamilyName.Text;
             }
         }
 
