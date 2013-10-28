@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.IO;
 
 namespace CSGraph
@@ -9,42 +10,63 @@ namespace CSGraph
     public class Edge
     {
 
-        private int startPointId;
-        private int endPointId;
-        private float penWidth;
+        private readonly Point startPoint;
+        private readonly Point endPoint;
+        private readonly float penWidth;
 
-        public int StartPointId
+        public Edge(Point pointA, Point pointB, float penWidth)
         {
-            get { return startPointId; }
-        }
-
-        public int EndPointId
-        {
-            get { return endPointId; }
-        }
-
-        public float PenWidth
-        {
-            get { return penWidth; }
-            set { penWidth = value; }
-        }
-
-        public Edge(int startPointId, int endPointId, float penWidth)
-        {
-            this.startPointId = startPointId;
-            this.endPointId = endPointId;
+            this.startPoint = pointA;
+            this.endPoint = pointB;
             this.penWidth = penWidth;
         }
 
         ~Edge()
         {
-            // 
+            //
+        }
+
+        public void draw(Graphics graphics)
+        {
+            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
+            pen.Width = this.penWidth;
+            graphics.DrawLine(pen,
+                this.startPoint.PosX,
+                this.startPoint.PosY,
+                this.endPoint.PosX,
+                this.endPoint.PosY);
         }
 
         public override string ToString()
         {
-            return "[" + startPointId + "]-[" + endPointId + "] (" + penWidth + ")";
+            return "[" + startPoint + "]-[" + endPoint + "] (" + penWidth + ")";
         }
+
+        public static void load(string filename, Graph holder)
+        {
+            string line;
+            string[] lineItem;
+            try
+            {
+                StreamReader sr = new StreamReader(File.Open(filename, FileMode.Open));
+                line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    lineItem = line.Split(';');
+                    holder.addEdge(new Edge(
+                            holder.getPoint(Convert.ToInt32(lineItem[0])),
+                            holder.getPoint(Convert.ToInt32(lineItem[1])),
+                            Convert.ToSingle(lineItem[2])));
+                }
+                sr.Close();
+            }
+            catch (Exception e)
+            {
+               // 
+            }
+        }     
+
+        
 
     }
 }
