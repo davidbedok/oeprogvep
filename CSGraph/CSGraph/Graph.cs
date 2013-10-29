@@ -10,10 +10,10 @@ namespace CSGraph
     public class Graph
     {
         
-        private List<Point> points;
+        private List<GraphPoint> points;
         private List<Edge> edges;
 
-        public Point[] Points
+        public GraphPoint[] Points
         {
             get { return this.points.ToArray(); }
         }
@@ -25,20 +25,20 @@ namespace CSGraph
 
         public Graph()
         {
-            this.points = new List<Point>();
+            this.points = new List<GraphPoint>();
             this.edges = new List<Edge>();
         }
 
-        public void addPoint( Point value ){
-            this.points.Add(value);       
+        public void add( GraphPoint point ){
+            this.points.Add(point);       
         }
 
-        public void addEdge(Edge value)
+        public void add( Edge edge )
         {
-            this.edges.Add(value);
+            this.edges.Add(edge);
         }
 
-        public Point getPoint(int id)
+        public GraphPoint getPoint(int id)
         {
             int i = 0;
             while (i < this.points.Count && this.points[i].Id != id)
@@ -49,8 +49,7 @@ namespace CSGraph
         }
 
         public void draw(Graphics graphics)
-        {
-            
+        {            
             for (int i = 0; i < this.points.Count; i++)
             {
                 this.points[i].draw(graphics);           
@@ -63,19 +62,26 @@ namespace CSGraph
 
         public static Graph load(String fileName)
         {
-            Graph holder = new Graph();
+            Graph graph = new Graph();
+            StreamReader reader = null;
             try
             {
-                StreamReader sr = new StreamReader(File.Open(fileName, FileMode.Open));
-                Point.load(sr.ReadLine(), holder);
-                Edge.load(sr.ReadLine(), holder);
-                sr.Close();
+                reader = new StreamReader(File.Open(fileName, FileMode.Open));
+                GraphPoint.load(reader.ReadLine(), graph);
+                Edge.load(reader.ReadLine(), graph);                
             }
             catch (Exception e)
             {
-                //
+                throw new BadFileFormatException("Unexpected error while parsing '" + fileName + "'.", e);
             }
-            return holder;
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+            }
+            return graph;
         }
 
     }

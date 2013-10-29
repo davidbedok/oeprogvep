@@ -60,7 +60,12 @@ namespace CSGraph
             dialog.Filter = "Graph files|graph*.txt";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                this.graph = Graph.load(dialog.FileName);
+                try
+                {
+                    this.graph = Graph.load(dialog.FileName);
+                } catch ( BadFileFormatException exc ) {
+                    MessageBox.Show(exc.ToString());
+                }
             }
             this.fillComboBox();
             this.draw();
@@ -73,9 +78,9 @@ namespace CSGraph
 
         private void bAddEdge_Click(object sender, EventArgs e)
         {
-            Point pAid = ((Point)(cbPointA.Items[cbPointA.SelectedIndex]));
-            Point pBid = ((Point)(cbPointA.Items[cbPointB.SelectedIndex]));
-            this.graph.addEdge(new Edge(pAid, pBid, 2));
+            GraphPoint pAid = ((GraphPoint)(cbPointA.Items[cbPointA.SelectedIndex]));
+            GraphPoint pBid = ((GraphPoint)(cbPointA.Items[cbPointB.SelectedIndex]));
+            this.graph.add(new Edge(pAid, pBid, 2));
             this.fillComboBox();
             this.draw();
         }

@@ -9,15 +9,16 @@ namespace CSGraph
 {
     public class Edge
     {
+        private const char DELIMITER = ';';
 
-        private readonly Point startPoint;
-        private readonly Point endPoint;
+        private readonly GraphPoint start;
+        private readonly GraphPoint end;
         private readonly float penWidth;
 
-        public Edge(Point pointA, Point pointB, float penWidth)
+        public Edge(GraphPoint start, GraphPoint end, float penWidth)
         {
-            this.startPoint = pointA;
-            this.endPoint = pointB;
+            this.start = start;
+            this.end = end;
             this.penWidth = penWidth;
         }
 
@@ -30,43 +31,55 @@ namespace CSGraph
         {
             Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
             pen.Width = this.penWidth;
-            graphics.DrawLine(pen,
-                this.startPoint.PosX,
-                this.startPoint.PosY,
-                this.endPoint.PosX,
-                this.endPoint.PosY);
+            graphics.DrawLine(pen, this.start.Position, this.end.Position);
         }
 
         public override string ToString()
         {
-            return "[" + startPoint + "]-[" + endPoint + "] (" + penWidth + ")";
+            return "[" + start + "]-[" + end + "] (" + penWidth + ")";
         }
 
-        public static void load(string filename, Graph holder)
+        public static void load(string fileName, Graph graph)
         {
-            string line;
-            string[] lineItem;
+            StreamReader reader = null;
             try
             {
-                StreamReader sr = new StreamReader(File.Open(filename, FileMode.Open));
-                line = "";
-                while ((line = sr.ReadLine()) != null)
+                reader = new StreamReader(File.Open(fileName, FileMode.Open));
+                String line = "";
+                while ((line = reader.ReadLine()) != null)
                 {
-                    lineItem = line.Split(';');
-                    holder.addEdge(new Edge(
-                            holder.getPoint(Convert.ToInt32(lineItem[0])),
-                            holder.getPoint(Convert.ToInt32(lineItem[1])),
-                            Convert.ToSingle(lineItem[2])));
+                    graph.add(Edge.parse(graph, line));
                 }
-                sr.Close();
+                reader.Close();
             }
             catch (Exception e)
             {
-               // 
+                throw new BadFileFormatException("Unexpected error while parsing '" + fileName + "'.", e);
             }
-        }     
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+            }
+        }
 
-        
+        private static Edge parse(Graph graph, String line)
+        {
+            try
+            {
+                string[] lineItem = line.Split(Edge.DELIMITER);
+                return new Edge(
+                            graph.getPoint(Convert.ToInt32(lineItem[0])),
+                            graph.getPoint(Convert.ToInt32(lineItem[1])),
+                            Convert.ToSingle(lineItem[2]));
+            }
+            catch (Exception e)
+            {
+                throw new GraphParseException("Edge parse error.", line, e);
+            }
+        }        
 
     }
 }

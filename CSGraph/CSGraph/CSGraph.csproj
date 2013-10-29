@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadFileFormatException.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="GraphForm.cs">
       <SubType>Form</SubType>
@@ -63,7 +64,8 @@
       <DependentUpon>GraphForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Graph.cs" />
-    <Compile Include="Point.cs" />
+    <Compile Include="GraphParseException.cs" />
+    <Compile Include="GraphPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GraphForm.resx">
