@@ -1,0 +1,4 @@
+10;szilva;45
+20;korte;47
+30;barack;50
+40;sakjfde;77
