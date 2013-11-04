@@ -8,7 +8,7 @@ namespace QTetris
 {
     public class HighScore : System.Object
     {
-        public const string HIGH_SCORE_FILE_NAME = "highScore.dat";
+        public const string HIGH_SCORE_FILE_NAME = "highscore.dat";
 
         private SortedList<int,HighScoreItem> highScores;
 

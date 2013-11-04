@@ -108,6 +108,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="FallItem\FallItem.cd" />
+    <None Include="highscore.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="HighScore\HighScore.cd" />
     <None Include="HighScore\HighScoreItem.cd" />
     <None Include="Level\Level.cd" />

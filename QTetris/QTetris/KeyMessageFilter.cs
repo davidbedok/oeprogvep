@@ -66,9 +66,9 @@ namespace QTetris
                                     break;
                             }
                         }
-                        //Console.WriteLine("Processing the messages : " + m.Msg);
-                        //Console.WriteLine("Processing the messages WPARAM : " + m.WParam.ToString());
-                        //Console.WriteLine("Processing the messages LPARAM : " + m.LParam.ToString());
+                        // Console.WriteLine("Processing the messages : " + m.Msg);
+                        // Console.WriteLine("Processing the messages WPARAM : " + m.WParam.ToString());
+                        // Console.WriteLine("Processing the messages LPARAM : " + m.LParam.ToString());
                         break;
                 }
                 return ret;
