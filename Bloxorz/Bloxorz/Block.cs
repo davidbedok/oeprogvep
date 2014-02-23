@@ -8,6 +8,7 @@ namespace Bloxorz
 {
     public class Block
     {
+        // test commit
 
         private Position b1;
         private Position b2;
