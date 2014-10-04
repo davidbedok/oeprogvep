@@ -1,0 +1,58 @@
+﻿<Window x:Class="BindingsWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:BindingsWPF"
+        Title="MainWindow" Height="496.194" Width="659.045">
+    <Grid>
+        <Grid.Resources>
+            <local:SliderValueConverter x:Key="SliderConverter"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Margin="20,10">
+            <Label Content="Simple binding with Converter." FontWeight="Bold" Margin="0,0,10,0"/>
+            <Slider x:Name="sDemo" Width="255" Value="5"/>
+            <Label Content="{Binding ElementName=sDemo, Path=Value, Converter={StaticResource SliderConverter}}" />
+            <Label Content="{Binding ElementName=sDemo, Path=Value}" />
+        </WrapPanel>
+        <WrapPanel Margin="20,10" Grid.Row="1">
+            <Label Content="Simple binding with shorter expression." FontWeight="Bold" Margin="0,0,10,0"/>
+            <CheckBox x:Name="cbControl" Content="Control" Margin="0,0,20,0"/>
+            <StackPanel Height="49" Width="100" IsEnabled="{Binding IsChecked, ElementName=cbControl}">
+                <RadioButton Content="Sample A"/>
+                <RadioButton Content="Sample B"/>
+                <RadioButton Content="Sample C"/>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Margin="20,10" Grid.Row="2">
+            <ListBox x:Name="lbCars" Height="100" Width="148"/>
+            <Grid x:Name="gCar" Height="100" Width="327" DataContext="{Binding ElementName=lbCars, Path=SelectedItem}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Brand:" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <Label Content="Model:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" VerticalAlignment="Center"/>
+                <Label Content="Engine capacity:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Center"/>
+                <Label Content="{Binding Brand}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="{Binding Model}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="{Binding}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold"/>
+            </Grid>
+        </WrapPanel>
+        <WrapPanel x:Name="wpCar" Margin="20,10" Grid.Row="3">
+            <Button x:Name="bChangeRover" Content="Change ROVER kw" Click="bChangeRover_Click" />
+            <Label Content="Engine capacity of Rover: "/>
+            <Label Content="{Binding EngineCapacity}" FontWeight="Bold" ContentStringFormat=" {0} kw"/>
+            <Label Content="(through INotifyPropertyChanged)"/>
+        </WrapPanel>
+    </Grid>
+</Window>
