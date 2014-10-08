@@ -45,7 +45,7 @@
                 <Label Content="Engine capacity:" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="2" VerticalAlignment="Center"/>
                 <Label Content="{Binding Brand}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
                 <Label Content="{Binding Model}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontWeight="Bold"/>
-                <Label Content="{Binding}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="{Binding EngineCapacity}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontWeight="Bold"/>
             </Grid>
         </WrapPanel>
         <WrapPanel x:Name="wpCar" Margin="20,10" Grid.Row="3">

@@ -47,9 +47,9 @@ namespace BindingsWPF
 			this.lbCars.Items.Refresh();
 
 			// workaround..
-			Car currectCar = (Car) this.lbCars.SelectedItem;
-			this.lbCars.SelectedItem = null;
-			this.lbCars.SelectedItem = currectCar;
+			// Car currectCar = (Car) this.lbCars.SelectedItem;
+			// this.lbCars.SelectedItem = null;
+			// this.lbCars.SelectedItem = currectCar;
 		}
 	}
 }
