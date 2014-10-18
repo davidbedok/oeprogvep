@@ -30,10 +30,9 @@ namespace BindingsWPF
 			set { 
 				this.engineCapacity = value; 
 			
-				PropertyChangedEventHandler handler = PropertyChanged;
-				if (handler != null)
+				if (PropertyChanged != null)
 				{
-					handler(this, new PropertyChangedEventArgs("EngineCapacity"));
+                    PropertyChanged(this, new PropertyChangedEventArgs("EngineCapacity"));
 				}
 			}
 		}
