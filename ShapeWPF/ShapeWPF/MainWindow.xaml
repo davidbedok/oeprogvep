@@ -14,7 +14,7 @@
         <Ellipse Fill="#00EE00" Stroke="Black" Margin="10"/>
         <Rectangle Grid.Column="1" Fill="AliceBlue" Margin="10" Stroke="Black" />
         <Line Grid.Row="1" Stroke="Black" StrokeThickness="4" X1="10" Y1="10" X2="100" Y2="100" />
-        <Polygon Margin="10" Grid.Row="1" Grid.Column="1" Points="10,10 30,130 200,20 10,10" Stroke="Purple" StrokeThickness="2" Stretch="Fill">
+        <Polygon Margin="10" Grid.Row="1" Grid.Column="1" Points="10,10 30,130 200,20" Stroke="Purple" StrokeThickness="2" Stretch="Fill">
             <Polygon.Fill>
                 <SolidColorBrush Color="Blue" Opacity="0.4"/>
             </Polygon.Fill>

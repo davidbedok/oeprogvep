@@ -22,13 +22,21 @@ namespace ShapeBindings
         public double X
         {
             get { return x; }
-            set { x = value; OnPropertyChanged("X"); }
+            set
+            {
+                x = value;
+                this.onPropertyChanged("X");
+            }
         }
 
         public double Y
         {
             get { return y; }
-            set { y = value; OnPropertyChanged("Y"); }
+            set
+            {
+                y = value;
+                this.onPropertyChanged("Y");
+            }
         }
 
 
@@ -38,11 +46,11 @@ namespace ShapeBindings
             this.y = y;
         }
 
-        protected void OnPropertyChanged(string propertyName)
+        protected void onPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
+            if (this.PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -65,6 +73,7 @@ namespace ShapeBindings
             Binding ellipseYBinding = new Binding("Y");
             ellipseYBinding.Source = this;
             ellipse.SetBinding(Canvas.TopProperty, ellipseYBinding);
+
 
             ellipse.Width = 50;
             ellipse.Height = 50;

@@ -23,9 +23,6 @@ namespace ShapeWPF
         public MainWindow()
         {
             InitializeComponent();
-
-            Line l = new Line();
-
         }
     }
 }

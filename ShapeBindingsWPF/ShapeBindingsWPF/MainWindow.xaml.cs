@@ -22,7 +22,7 @@ namespace ShapeBindings
     public partial class MainWindow : Window
     {
         private DispatcherTimer timer;
-        private Ball labda;
+        private Ball ball;
 
         public MainWindow()
         {
@@ -34,16 +34,16 @@ namespace ShapeBindings
 
         void timer_Tick(object sender, EventArgs e)
         {
-            if (this.labda != null)
+            if (this.ball != null)
             {
-                this.labda.move();
+                this.ball.move();
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.labda = new Ball(50, 50);
-            this.canvas.Children.Add(this.labda.getEllipse());
+            this.ball = new Ball(50, 50);
+            this.canvas.Children.Add(this.ball.getEllipse());
 
             timer.Start();
         }
