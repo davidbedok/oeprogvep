@@ -1,13 +1,13 @@
 ﻿<Window x:Class="TimerAppWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="MainWindow" Height="385.821" Width="635.448" Loaded="Window_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Canvas x:Name="canvas" Margin="10"/>
+        <Canvas x:Name="canvas" Margin="10" />
         <Grid Grid.Row="1" Margin="10" >
             <Grid.RowDefinitions>
                 <RowDefinition/>

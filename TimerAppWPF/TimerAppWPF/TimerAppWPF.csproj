@@ -63,7 +63,6 @@
     </Compile>
     <Compile Include="Ball.cs" />
     <Compile Include="BallFactory.cs" />
-    <Compile Include="Direction.cs" />
     <Compile Include="AppFrame.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -71,7 +70,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoveType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

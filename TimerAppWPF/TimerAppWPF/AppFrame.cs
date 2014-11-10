@@ -10,7 +10,7 @@ namespace TimerApp
 {
     public class AppFrame
     {
-        private const int MARGIN = 40;
+        private const double MARGIN = Ball.MAX_RADIUS * 2 + 10;
 
         private readonly double width;
         private readonly double height;
@@ -38,7 +38,6 @@ namespace TimerApp
             Rectangle rect = new Rectangle();
             rect.Width = this.width - 1;
             rect.Height = this.height - 1;
-            rect.Stretch = Stretch.Fill;
             rect.Stroke = Brushes.Black;
             return rect;
         }
@@ -50,22 +49,12 @@ namespace TimerApp
 
         public Point getRandomPoint()
         {
-            return new Point(this.getRandWidthCoord(), this.getRandHeightCoord());
+            return new Point(this.getRandCoord(this.width), this.getRandCoord(this.height));
         }
 
-        private int getRandWidthCoord()
+        private double getRandCoord(double max)
         {
-            return this.getRandCoord(this.width);
-        }
-
-        private int getRandHeightCoord()
-        {
-            return this.getRandCoord(this.height);
-        }
-
-        private int getRandCoord(double max)
-        {
-            return AppFrame.MARGIN + this.rand.Next((int)max - AppFrame.MARGIN * 2);
+            return BallFactory.getRandDouble(this.rand, AppFrame.MARGIN, max - AppFrame.MARGIN);
         }
 
     }

@@ -73,13 +73,7 @@ namespace TimerAppWPF
         {
             this.ball = this.ballFactory.createBall(10, 15);
             this.canvas.Children.Add(this.ball.getEllipse());
-
             this.timerSingle.Start();
-        }
-
-        private void Stop_Click(object sender, RoutedEventArgs e)
-        {
-            this.timerSingle.Stop();
         }
 
         private void StartMultiple_Click(object sender, RoutedEventArgs e)
@@ -90,8 +84,12 @@ namespace TimerAppWPF
                 this.balls[i] = this.ballFactory.createBall();
                 canvas.Children.Add(this.balls[i].getEllipse());
             }
-
             this.timerMultiple.Start();
+        }
+
+        private void Stop_Click(object sender, RoutedEventArgs e)
+        {
+            this.timerSingle.Stop();
         }
 
         private void StopMultiple_Click(object sender, RoutedEventArgs e)

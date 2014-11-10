@@ -14,100 +14,70 @@ namespace TimerApp
 
     public class Ball : INotifyPropertyChanged
     {
-        private const int MIN_RADIUS = 5;
-        private const int MAX_RADIUS = 15;
-        private const int MIN_SPEED = 5;
-        private const int MAX_SPEED = 15;
+        private const double MIN_RADIUS = 5;
+        public const double MAX_RADIUS = 15;
+        private const double MIN_SPEED = 5;
+        private const double MAX_SPEED = 15;
 
         private readonly AppFrame frame;
         private readonly Color color;
-        private readonly double jumpSpeed;
+        private readonly double speed;
         private readonly double radius;
 
-        private double x;
-        private double y;
-
-        private MoveType xmt;
-        private MoveType ymt;
+        private Point point;
+        private double angle;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        private double Diameter
+        {
+            get
+            {
+                return this.radius * 2 + 1;
+            }
+        }
 
         public double X
         {
-            get { return this.x; }
+            get { return this.point.X; }
             set
             {
-                if (value < this.frame.Width - radius * 2 - 2)
+                if (value > 0 && value < this.frame.Width - Diameter)
                 {
-                    if (value > 0)
-                    {
-                        x = value;
-                        onPropertyChanged("X");
-                    }
-                    else
-                    {
-                        xmt = MoveType.Down;
-                    }
+                    this.point.X = value;
+                    onPropertyChanged("X");
                 }
                 else
                 {
-                    xmt = MoveType.Up;
+                    this.angle = 2 * Math.PI - this.angle;
                 }
             }
         }
 
         public double Y
         {
-            get { return this.y; }
+            get { return this.point.Y; }
             set
             {
-                if (value < this.frame.Height - radius * 2 - 2)
+                if (value > 0 && value < this.frame.Height - this.Diameter)
                 {
-                    if (value > 0)
-                    {
-                        y = value;
-                        onPropertyChanged("Y");
-                    }
-                    else
-                    {
-                        ymt = MoveType.Down;
-                    }
+                    this.point.Y = value;
+                    onPropertyChanged("Y");
                 }
                 else
                 {
-                    ymt = MoveType.Up;
+                    this.angle = Math.PI - this.angle;
                 }
             }
         }
 
-        public Ball(Color color, Point point, float jumpSpeed, double radius, AppFrame frame, Direction direction)
+        public Ball(Color color, Point point, double speed, double radius, AppFrame frame, double angle)
         {
             this.color = color;
             this.frame = frame;
-            this.x = point.X;
-            this.y = point.Y;
-            this.jumpSpeed = jumpSpeed;
+            this.point = point;
+            this.speed = speed;
             this.radius = radius;
-
-            switch (direction)
-            {
-                case Direction.DOWN:
-                    xmt = MoveType.Down;
-                    ymt = MoveType.Down;
-                    break;
-                case Direction.LEFT:
-                    xmt = MoveType.Up;
-                    ymt = MoveType.Down;
-                    break;
-                case Direction.RIGHT:
-                    xmt = MoveType.Down;
-                    ymt = MoveType.Up;
-                    break;
-                case Direction.UP:
-                    xmt = MoveType.Up;
-                    ymt = MoveType.Up;
-                    break;
-            }
+            this.angle = angle;
         }
 
         protected void onPropertyChanged(string propertyName)
@@ -120,22 +90,10 @@ namespace TimerApp
 
         public void jump()
         {
-            if (xmt == MoveType.Down)
-            {
-                this.X = this.x + this.jumpSpeed;
-            }
-            else
-            {
-                this.X = this.x - this.jumpSpeed;
-            }
-            if (ymt == MoveType.Down)
-            {
-                this.Y = this.y + this.jumpSpeed;
-            }
-            else
-            {
-                this.Y = this.y - this.jumpSpeed;
-            }
+            double a = Math.Sin(this.angle) * this.speed;
+            double b = Math.Cos(this.angle) * this.speed;
+            this.X = (double)(this.X - a);
+            this.Y = (double)(this.Y + b);
         }
 
         public Ellipse getEllipse()
@@ -163,14 +121,19 @@ namespace TimerApp
             return Color.FromRgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255));
         }
 
-        public static int getRandJumpSpeed(Random rand)
+        public static double getRandSpeed(Random rand)
         {
-            return rand.Next(Ball.MIN_SPEED, Ball.MAX_SPEED);
+            return BallFactory.getRandDouble(rand, Ball.MIN_SPEED, Ball.MAX_SPEED);
         }
 
-        public static int getRandRadius(Random rand)
+        public static double getRandRadius(Random rand)
         {
-            return rand.Next(Ball.MIN_RADIUS, Ball.MAX_RADIUS);
+            return BallFactory.getRandDouble(rand, Ball.MIN_RADIUS, Ball.MAX_RADIUS);
+        }
+
+        public static double getRandAngle(Random rand)
+        {
+            return BallFactory.getRandDouble(rand, 0, Math.PI * 2);
         }
 
     }
