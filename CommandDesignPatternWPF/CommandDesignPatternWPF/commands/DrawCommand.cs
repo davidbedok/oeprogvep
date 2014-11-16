@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using CommandDesignPatternWPF.commands;
+using CommandDesignPatternWPF.shapes;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.commands
 {
     public class DrawCommand : Command
     {

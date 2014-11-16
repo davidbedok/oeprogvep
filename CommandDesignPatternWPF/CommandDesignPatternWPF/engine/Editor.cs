@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommandDesignPatternWPF.commands;
+using CommandDesignPatternWPF.shapes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.engine
 {
     public class Editor : IEditor
     {
@@ -15,6 +17,11 @@ namespace CommandDesignPatternWPF
         private readonly Image image;
         private readonly List<IShape> shapes;
         private readonly IEditorHistory history;
+
+        public IEditorHistory History
+        {
+            get { return this.history; }
+        }   
 
         public Editor(Image image)
         {
@@ -51,9 +58,34 @@ namespace CommandDesignPatternWPF
             this.drawImage();
         }
 
-        public void changeColor(IShape shape, Color newColor)
+        public void changePenWidth(IShape shape, double width)
         {
-            this.history.addCommand(new ChangeColorCommand(this.shapes, shape, newColor));
+            this.history.addCommand(new ChangePenWidthCommand(this.shapes, shape, width));
+            this.drawImage();
+        }
+
+        public void changeColor(IShape shape, ColorType type, Nullable<Color> color)
+        {
+            switch (type)
+            {
+                case ColorType.FILL:
+                    this.changeFillColor(shape, color);
+                    break;
+                case ColorType.PEN:
+                    this.changePenColor(shape, color);
+                    break;
+            }
+        }
+
+        private void changeFillColor(IShape shape, Nullable<Color> color)
+        {
+            this.history.addCommand(new ChangeFillColorCommand(this.shapes, shape, color));
+            this.drawImage();
+        }
+
+        private void changePenColor(IShape shape, Nullable<Color> color)
+        {
+            this.history.addCommand(new ChangePenColorCommand(this.shapes, shape, color));
             this.drawImage();
         }
 

@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.shapes
 {
     public class EllipseShape : CDPShape
     {
@@ -22,7 +22,7 @@ namespace CommandDesignPatternWPF
             }
         }
 
-        public EllipseShape(Color penColor, Color fillColor, double penWidth, Point origo, double radiusX, double radiusY)
+        public EllipseShape(Nullable<Color> penColor, Nullable<Color> fillColor, double penWidth, Point origo, double radiusX, double radiusY)
             : base(penColor, fillColor, penWidth, origo)
         {
             this.radiusX = radiusX;

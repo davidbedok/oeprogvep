@@ -5,23 +5,29 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.shapes
 {
     public abstract class CDPShape : IShape
     {
 
-        private Color penColor;
-        private Color fillColor;
+        private Nullable<Color> penColor;
+        private Nullable<Color> fillColor;
         private double penWidth;
         private Point referencePoint;
 
-        public Color PenColor
+        public double PenWidth
+        {
+            get { return this.penWidth; }
+            set { this.penWidth = value; }
+        }
+
+        public Nullable<Color> PenColor
         {
             get { return this.penColor; }
             set { this.penColor = value; }
         }
 
-        public Color FillColor
+        public Nullable<Color> FillColor
         {
             get { return this.fillColor; }
             set { this.fillColor = value; }
@@ -33,7 +39,7 @@ namespace CommandDesignPatternWPF
             set { this.referencePoint = value; }
         }
 
-        public CDPShape(Color penColor, Color fillColor, double penWidth, Point referencePoint)
+        public CDPShape(Nullable<Color> penColor, Nullable<Color> fillColor, double penWidth, Point referencePoint)
         {
             this.penColor = penColor;
             this.fillColor = fillColor;
@@ -44,8 +50,14 @@ namespace CommandDesignPatternWPF
         public Drawing buildDrawing()
         {
             GeometryDrawing drawing = new GeometryDrawing();
-            drawing.Pen = new Pen(new SolidColorBrush(this.penColor), this.penWidth);
-            drawing.Brush = new SolidColorBrush(this.fillColor);
+            if (this.penColor.HasValue)
+            {
+                drawing.Pen = new Pen(new SolidColorBrush(this.penColor.Value), this.penWidth);
+            }
+            if (this.fillColor.HasValue)
+            {
+                drawing.Brush = new SolidColorBrush(this.fillColor.Value);
+            }
             drawing.Geometry = buildGeometry();
             return drawing;
         }

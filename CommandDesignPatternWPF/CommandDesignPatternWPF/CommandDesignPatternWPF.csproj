@@ -57,7 +57,12 @@
     <Compile Include="ColorDialog.xaml.cs">
       <DependentUpon>ColorDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorType.cs" />
+    <Compile Include="commands\ChangeColorCommand.cs" />
+    <Compile Include="commands\ChangePenColorCommand.cs" />
+    <Compile Include="commands\ChangePenWidthCommand.cs" />
     <Compile Include="commands\Command.cs" />
+    <Compile Include="ApplicationCalculator.cs" />
     <Compile Include="MoveType.cs" />
     <Compile Include="shapes\EllipseShape.cs" />
     <Compile Include="shapes\EmptyShape.cs" />
@@ -77,7 +82,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="commands\ChangeColorCommand.cs" />
+    <Compile Include="commands\ChangeFillColorCommand.cs" />
     <Compile Include="commands\DrawCommand.cs" />
     <Compile Include="commands\EditorCommand.cs" />
     <Compile Include="commands\MoveCommand.cs" />

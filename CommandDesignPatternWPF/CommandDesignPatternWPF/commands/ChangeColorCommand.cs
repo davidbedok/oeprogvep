@@ -1,32 +1,36 @@
-﻿using CommandDesignPatternWPF.commands;
+﻿using CommandDesignPatternWPF.shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.commands
 {
-    public class ChangeColorCommand : Command
+    public abstract class ChangeColorCommand : Command
     {
 
-        private Color originalColor;
-        private Color newColor;
+        private Nullable<Color> originalColor;
+        private Nullable<Color> newColor;
 
-        public ChangeColorCommand(List<IShape> shapes, IShape shape, Color newColor) : base(shapes, shape)
+        protected abstract Nullable<Color> Color { get; set; }
+
+        public ChangeColorCommand(List<IShape> shapes, IShape shape, Nullable<Color> newColor)
+            : base(shapes, shape)
         {
-            this.originalColor = shape.FillColor;
+            this.originalColor = this.Color;
             this.newColor = newColor;
         }
 
         public override void process()
         {
-            shape.FillColor = newColor;
+            this.Color = this.newColor;
         }
 
         public override void undo()
         {
-            shape.FillColor = originalColor;
+            this.Color = this.originalColor;
         }
 
     }

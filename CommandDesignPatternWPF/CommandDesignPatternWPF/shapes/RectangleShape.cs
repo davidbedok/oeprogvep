@@ -5,8 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.shapes
 {
     public class RectangleShape : CDPShape
     {
@@ -21,7 +20,7 @@ namespace CommandDesignPatternWPF
             }
         }
 
-        public RectangleShape(Color penColor, Color fillColor, double penWidth, Point topLeft, Size size)
+        public RectangleShape(Nullable<Color> penColor, Nullable<Color> fillColor, double penWidth, Point topLeft, Size size)
             : base(penColor, fillColor, penWidth, topLeft)
         {
             this.size = size;
@@ -34,7 +33,7 @@ namespace CommandDesignPatternWPF
 
         public override string ToString()
         {
-            return "Ellipse " + this.size.Width + "x" + this.size.Height + base.ToString();
+            return "Rectangle " + this.size.Width + "x" + this.size.Height + base.ToString();
         }
 
     }

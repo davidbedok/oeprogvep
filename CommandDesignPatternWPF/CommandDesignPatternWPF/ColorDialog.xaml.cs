@@ -21,13 +21,13 @@ namespace CommandDesignPatternWPF
         private const int COLUMNS = 12;
         private const int ROWS = 11;
 
-        private Brush color;
-        private List<Brush> colors;
+        private Brush brush;
+        private List<Brush> brushes;
 
-        public Brush Color
+        public Brush Brush
         {
-            get { return this.color; }
-            set { this.color = value; }
+            get { return this.brush; }
+            set { this.brush = value; }
         }
 
         public ColorDialog()
@@ -35,10 +35,10 @@ namespace CommandDesignPatternWPF
             InitializeComponent();
         }
 
-        private void Grid_Loaded_1(object sender, RoutedEventArgs e)
+        private void gridLoaded(object sender, RoutedEventArgs e)
         {
-            this.initColors();
-            this.Title += " " + this.color;
+            this.initBrushes();
+            this.Title += " " + this.brush;
             this.buildColorGrid();
         }
 
@@ -58,7 +58,7 @@ namespace CommandDesignPatternWPF
             {
                 for (int k = 0; k < COLUMNS; k++)
                 {
-                    Rectangle rectangle = this.buildColorRectangle(this.colors[index++]);
+                    Rectangle rectangle = this.buildColorRectangle(this.brushes[index++]);
 
                     Grid.SetColumn(rectangle, k);
                     Grid.SetRow(rectangle, i);
@@ -67,7 +67,7 @@ namespace CommandDesignPatternWPF
             }
         }
 
-        private Rectangle buildColorRectangle( Brush currentColor )
+        private Rectangle buildColorRectangle( Brush currentBrush )
         {
             Rectangle rectangle = new Rectangle();
             rectangle.Margin = new Thickness(2);
@@ -75,8 +75,8 @@ namespace CommandDesignPatternWPF
             rectangle.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             rectangle.Width = 20;
             rectangle.Height = 20;
-            rectangle.Fill = currentColor;
-            if (currentColor == this.color)
+            rectangle.Fill = currentBrush;
+            if (this.brush != null && currentBrush == this.brush)
             {
                 rectangle.StrokeThickness = 3;
                 rectangle.Stroke = Brushes.Black;
@@ -90,13 +90,13 @@ namespace CommandDesignPatternWPF
             return rectangle;
         }
 
-        private void initColors()
+        private void initBrushes()
         {
-            this.colors = new List<Brush>();
+            this.brushes = new List<Brush>();
             PropertyInfo[] publicStaticMembers = typeof(Brushes).GetProperties(BindingFlags.Public | BindingFlags.Static);
             foreach (PropertyInfo member in publicStaticMembers)
             {
-                this.colors.Add((Brush)member.GetValue(null, null));
+                this.brushes.Add((Brush)member.GetValue(null, null));
             }
         }
 
@@ -105,9 +105,15 @@ namespace CommandDesignPatternWPF
             if (sender is Rectangle)
             {
                 Rectangle rectangle = (Rectangle)sender;
-                this.color = rectangle.Fill;
+                this.brush = rectangle.Fill;
                 this.DialogResult = true;
             }
+        }
+
+        private void transparentMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            this.brush = null;
+            this.DialogResult = true;
         }
 
     }

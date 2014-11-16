@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.shapes
 {
     public class EmptyShape : CDPShape
     {

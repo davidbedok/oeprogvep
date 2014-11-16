@@ -5,12 +5,13 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
-namespace CommandDesignPatternWPF
+namespace CommandDesignPatternWPF.shapes
 {
     public interface IShape
     {
-        Color PenColor { get; set; }
-        Color FillColor { get; set; }
+        double PenWidth { get; set; }
+        Nullable<Color> PenColor { get; set; }
+        Nullable<Color> FillColor { get; set; }
         Point ReferencePoint { get; set; }
 
         Drawing buildDrawing();
