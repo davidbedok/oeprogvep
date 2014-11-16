@@ -1,44 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
     public class Editor : IEditor
     {
 
-        private IEditorHistory history;       
- 
-        public Editor()
+        private readonly Image image;
+        private readonly List<IShape> shapes;
+        private readonly IEditorHistory history;
+
+        public Editor(Image image)
         {
+            this.image = image;
+            this.shapes = new List<IShape>();
             this.history = new EditorHistory();
         }
 
-        public void drawShape(Graphics imgGra, CDPShape shape)
+        public void drawImage()
         {
-            this.history.addCommand(imgGra, new DrawCommand(shape));
+            this.image.Source = new DrawingImage(this.build());
         }
 
-        public void changeColor(Graphics imgGra, CDPShape shape, Color newColor)
+        private Drawing build()
         {
-            this.history.addCommand(imgGra, new ChangeColorCommand(shape, newColor));
+            DrawingGroup group = new DrawingGroup();
+            group.Children.Add(buildFrame());
+            for (int i = 0; i < this.shapes.Count; i++)
+            {
+                group.Children.Add(this.shapes[i].buildDrawing());
+            }
+            return group;
         }
 
-        public void moveShape(Graphics imgGra, CDPShape shape, MoveType moveType, float param)
+        private GeometryDrawing buildFrame()
         {
-            this.history.addCommand(imgGra, new MoveCommand(shape, moveType, param));
+            Geometry geometry = new RectangleGeometry(new Rect(new Point(0, 0), new Size(MainWindow.IMG_WIDTH, MainWindow.IMG_HEIGHT)));
+            return new GeometryDrawing(Brushes.White, new Pen(Brushes.Black, 1), geometry);
         }
 
-        public void undo(Graphics imgGra)
+        public void draw(IShape shape)
         {
-            this.history.undo(imgGra);
+            this.history.addCommand(new DrawCommand(this.shapes, shape));
+            this.drawImage();
         }
 
-        public void redo(Graphics imgGra)
+        public void changeColor(IShape shape, Color newColor)
         {
-            this.history.redo(imgGra);
+            this.history.addCommand(new ChangeColorCommand(this.shapes, shape, newColor));
+            this.drawImage();
+        }
+
+        public void move(IShape shape, MoveType moveType, double param)
+        {
+            this.history.addCommand(new MoveCommand(this.shapes, shape, moveType, param));
+            this.drawImage();
+        }
+
+        public void undo()
+        {
+            this.history.undo();
+            this.drawImage();
+        }
+
+        public void redo()
+        {
+            this.history.redo();
+            this.drawImage();
         }
 
     }

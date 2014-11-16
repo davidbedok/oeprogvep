@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CommandDesignPatternWPF"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded_1" x:Name="abc">
+        Title="Command design pattern (WPF)" Height="500" Width="600" Loaded="WindowLoaded">
     <Window.Resources>
         <BitmapImage x:Key="MyImageSource" UriSource="Resources/exit.ico" />
     </Window.Resources>
@@ -29,6 +29,10 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo" Click="undoClick" />
+                <MenuItem Header="_Redo" Click="redoClick" />
+            </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Header="_About">
                     <MenuItem.Icon>
@@ -39,12 +43,12 @@
         </Menu>
         <ToolBarTray Orientation="Vertical">
             <ToolBar>
-                <RadioButton ToolTip="Draw a line" Click="ChangeToolClick" Tag="{x:Static local:Palette.LINE}" IsChecked="True">
+                <RadioButton ToolTip="Draw a line" Click="changeToolClick" Tag="{x:Static local:Palette.LINE}" IsChecked="True">
                     <RadioButton.Content>
                         <Line X1="0" Y1="0" X2="24" Y2="24"  StrokeThickness="2" Stroke="Black" Margin="3"></Line>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton ToolTip="Draw a rectangle" Click="ChangeToolClick" Tag="{x:Static local:Palette.RECTANGLE}">
+                <RadioButton ToolTip="Draw a rectangle" Click="changeToolClick" Tag="{x:Static local:Palette.RECTANGLE}">
                     <RadioButton.Content>
                         <Rectangle Width="24" Height="24" StrokeThickness="2" Stroke="Black" Margin="3">
                             <Rectangle.Fill>
@@ -53,7 +57,7 @@
                         </Rectangle>
                     </RadioButton.Content>
                 </RadioButton>
-                <RadioButton ToolTip="Draw an ellipse" Click="ChangeToolClick" Tag="{x:Static local:Palette.ELLIPSE}">
+                <RadioButton ToolTip="Draw an ellipse" Click="changeToolClick" Tag="{x:Static local:Palette.ELLIPSE}">
                     <RadioButton.Content>
                         <Ellipse Width="24" Height="24" StrokeThickness="2" Stroke="Black" Margin="3">
                             <Ellipse.Fill>
@@ -62,6 +66,35 @@
                         </Ellipse>
                     </RadioButton.Content>
                 </RadioButton>
+                <Rectangle ToolTip="Pen color"  Width="20" Height="20" StrokeThickness="1" Stroke="Black" Margin="3" x:Name="penColorTool" MouseDown="colorPickerToolMouseDown">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="Black" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Rectangle ToolTip="Fill color"  Width="20" Height="20" StrokeThickness="1" Stroke="Black" Margin="3" x:Name="fillColorTool" MouseDown="colorPickerToolMouseDown">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <ComboBox x:Name="penWidthTool" FontSize="9" SelectedIndex="0">
+                    <ComboBoxItem Content="1" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="5" />
+                </ComboBox>
+            </ToolBar>
+            <ToolBar>
+                <Button Width="32" Click="undoClick">
+                    <StackPanel>
+                        <Image Source="Resources/undo.ico" />
+                    </StackPanel>
+                </Button>
+                <Button Width="32" Click="redoClick">
+                    <StackPanel>
+                        <Image Source="Resources/redo.ico" />
+                    </StackPanel>
+                </Button>
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom">
@@ -70,20 +103,16 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                     </Grid>
                 </ItemsPanelTemplate>
             </StatusBar.ItemsPanel>
             <StatusBarItem Grid.Column="0">
-                <TextBlock Name="x" />
+                <TextBlock Name="coordiantes" />
             </StatusBarItem>
             <StatusBarItem Grid.Column="1">
-                <TextBlock Name="y" />
-            </StatusBarItem>
-            <StatusBarItem Grid.Column="2">
-                <TextBlock Text="sample" />
+                <ComboBox x:Name="shapes" Width="300" />
             </StatusBarItem>
         </StatusBar>
         <Canvas x:Name="canvas" MouseMove="canvas_MouseMove" MouseDown="canvas_MouseDown" MouseUp="canvas_MouseUp">

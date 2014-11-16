@@ -8,7 +8,7 @@ namespace CommandDesignPatternWPF
 {
     public interface EditorCommand
     {
-        void process(Graphics imgGra);
-        void undo(Graphics imgGra);
+        void process();
+        void undo();
     }
 }

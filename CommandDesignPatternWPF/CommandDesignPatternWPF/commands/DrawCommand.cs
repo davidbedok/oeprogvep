@@ -3,27 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using CommandDesignPatternWPF.commands;
 
 namespace CommandDesignPatternWPF
 {
-    public class DrawCommand : EditorCommand
+    public class DrawCommand : Command
     {
 
-        private IShape shape;
-
-        public DrawCommand(IShape shape)
+        public DrawCommand(List<IShape> shapes, IShape shape) : base(shapes, shape)
         {
-            this.shape = shape;
         }
 
-        public void process(Graphics imgGra)
+        public override void process()
         {
-            shape.draw(imgGra);
+            this.shapes.Add(this.shape);
         }
 
-        public void undo(Graphics imgGra)
+        public override void undo()
         {
-            shape.erase(imgGra);
+            this.shapes.Remove(this.shape);
         }
 
     }

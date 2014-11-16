@@ -1,56 +1,51 @@
-﻿using System;
+﻿using CommandDesignPatternWPF.commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
 
 namespace CommandDesignPatternWPF
 {
-    public class MoveCommand : EditorCommand
+    public class MoveCommand : Command
     {
 
-        private CDPShape shape;
         private MoveType moveType;
-        private float param;
+        private double param;
 
-        public MoveCommand(CDPShape shape, MoveType moveType, float param)
+        public MoveCommand(List<IShape> shapes, IShape shape, MoveType moveType, double param) : base(shapes, shape)
         {
-            this.shape = shape;
             this.moveType = moveType;
             this.param = param;
         }
 
-        public void process(Graphics imgGra)
+        public override void process()
         {
-            shape.erase(imgGra);
             this.changeReferencePoint(param);
-            shape.draw(imgGra);
         }
 
-        private void changeReferencePoint( float param )
+        private void changeReferencePoint( double param )
         {
             switch (this.moveType)
             {
                 case MoveType.LEFT:
-                    this.shape.ReferencePoint = new PointF(this.shape.ReferencePoint.X - param, this.shape.ReferencePoint.Y);
+                    this.shape.ReferencePoint = new Point(this.shape.ReferencePoint.X - param, this.shape.ReferencePoint.Y);
                     break;
                 case MoveType.UP:
-                    this.shape.ReferencePoint = new PointF(this.shape.ReferencePoint.X, this.shape.ReferencePoint.Y - param);
+                    this.shape.ReferencePoint = new Point(this.shape.ReferencePoint.X, this.shape.ReferencePoint.Y - param);
                     break;
                 case MoveType.DOWN:
-                    this.shape.ReferencePoint = new PointF(this.shape.ReferencePoint.X, this.shape.ReferencePoint.Y + param);
+                    this.shape.ReferencePoint = new Point(this.shape.ReferencePoint.X, this.shape.ReferencePoint.Y + param);
                     break;
                 case MoveType.RIGHT:
-                    this.shape.ReferencePoint = new PointF(this.shape.ReferencePoint.X + param, this.shape.ReferencePoint.Y);
+                    this.shape.ReferencePoint = new Point(this.shape.ReferencePoint.X + param, this.shape.ReferencePoint.Y);
                     break;
             }
         }
 
-        public void undo(Graphics imgGra)
+        public override void undo()
         {
-            shape.erase(imgGra);
             this.changeReferencePoint(param * -1);
-            shape.draw(imgGra);
         }
 
     }

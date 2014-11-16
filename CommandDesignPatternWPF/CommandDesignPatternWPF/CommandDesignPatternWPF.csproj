@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ColorDialog.xaml.cs">
+      <DependentUpon>ColorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="commands\Command.cs" />
     <Compile Include="MoveType.cs" />
     <Compile Include="shapes\EllipseShape.cs" />
     <Compile Include="shapes\EmptyShape.cs" />
@@ -61,6 +65,10 @@
     <Compile Include="shapes\LineShape.cs" />
     <Compile Include="shapes\RectangleShape.cs" />
     <Compile Include="shapes\CDPShape.cs" />
+    <Page Include="ColorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,7 +77,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AppLine.cs" />
     <Compile Include="commands\ChangeColorCommand.cs" />
     <Compile Include="commands\DrawCommand.cs" />
     <Compile Include="commands\EditorCommand.cs" />
@@ -115,6 +122,9 @@
     <Content Include="Resources\about.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\undo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\exit.ico">
@@ -132,6 +142,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\redo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\save.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

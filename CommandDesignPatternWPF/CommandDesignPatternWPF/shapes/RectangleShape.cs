@@ -2,34 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
+
 
 namespace CommandDesignPatternWPF
 {
     public class RectangleShape : CDPShape
     {
 
-        private RectangleF rect;
+        private Size size;
 
-        public RectangleShape(Pen drawPen, RectangleF rect)
-            : base(drawPen, rect.Location)
+        private Rect Rect
         {
-            this.rect = rect;
+            get
+            {
+                return new Rect(this.ReferencePoint, this.size);
+            }
         }
 
-        public override void draw(Graphics imgGra)
+        public RectangleShape(Color penColor, Color fillColor, double penWidth, Point topLeft, Size size)
+            : base(penColor, fillColor, penWidth, topLeft)
         {
-            imgGra.DrawRectangle(this.DrawPen, this.ReferencePoint.X, this.ReferencePoint.Y, this.rect.Width, this.rect.Height);
+            this.size = size;
         }
 
-        public override void erase(Graphics imgGra)
+        protected override Geometry buildGeometry()
         {
-            imgGra.DrawRectangle(this.ErasePen, this.ReferencePoint.X, this.ReferencePoint.Y, this.rect.Width, this.rect.Height);
+            return new RectangleGeometry(this.Rect);
         }
 
         public override string ToString()
         {
-            return "RECTANGLE " + this.rect;
+            return "Ellipse " + this.size.Width + "x" + this.size.Height + base.ToString();
         }
 
     }

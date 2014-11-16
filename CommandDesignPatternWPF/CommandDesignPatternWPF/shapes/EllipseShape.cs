@@ -2,39 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace CommandDesignPatternWPF
 {
     public class EllipseShape : CDPShape
     {
 
-        private RectangleF rect;
-
-        public EllipseShape(Pen drawPen, RectangleF rect)
-            : base(drawPen, rect.Location)
+        private double radiusX;
+        private double radiusY;
+        
+        private Rect Rect
         {
-            this.rect = rect;
+            get
+            {
+                return new Rect(this.ReferencePoint.X - this.radiusX, this.ReferencePoint.Y - this.radiusY, 2 * this.radiusX, 2 * this.radiusY);
+            }
         }
 
-        public override void draw(Graphics imgGra)
+        public EllipseShape(Color penColor, Color fillColor, double penWidth, Point origo, double radiusX, double radiusY)
+            : base(penColor, fillColor, penWidth, origo)
         {
-            imgGra.DrawEllipse(this.DrawPen, this.getRectangle());
+            this.radiusX = radiusX;
+            this.radiusY = radiusY;
         }
 
-        private RectangleF getRectangle()
+        protected override Geometry buildGeometry() 
         {
-            return new RectangleF(this.ReferencePoint.X, this.ReferencePoint.Y, this.rect.Width, this.rect.Height);
-        }
-
-        public override void erase(Graphics imgGra)
-        {
-            imgGra.DrawEllipse(this.ErasePen, this.getRectangle());
+            return new EllipseGeometry(this.Rect);
         }
 
         public override string ToString()
         {
-            return "ELLIPSE " + this.rect;
+            return "Ellipse " + this.radiusX + "x" + this.radiusY + base.ToString();
         }
 
     }

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
     public interface IEditor
     {
-        void drawShape(Graphics imgGra, CDPShape shape);
-        void changeColor(Graphics imgGra, CDPShape shape, Color newColor);
-        void moveShape(Graphics imgGra, CDPShape shape, MoveType moveType, float param);
-        void undo(Graphics imgGra);
-        void redo(Graphics imgGra);
+        void drawImage();
+
+        void draw(IShape shape);
+        void changeColor(IShape shape, Color newColor);
+        void move(IShape shape, MoveType moveType, double param);
+
+        void undo();
+        void redo();
     }
 }

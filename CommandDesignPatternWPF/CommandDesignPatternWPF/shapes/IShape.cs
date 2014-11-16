@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
     public interface IShape
     {
-        Color ShapeColor { get; set; }
-        PointF ReferencePoint { get; set; }
-        void draw(Graphics imgGra);
-        void erase(Graphics imgGra);
+        Color PenColor { get; set; }
+        Color FillColor { get; set; }
+        Point ReferencePoint { get; set; }
+
+        Drawing buildDrawing();
     }
 }

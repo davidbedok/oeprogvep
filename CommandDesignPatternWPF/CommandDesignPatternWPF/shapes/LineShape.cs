@@ -2,34 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
     public class LineShape : CDPShape
     {
 
-        private PointF end;
+        private Point end;
 
-        public LineShape(Pen drawPen, PointF start, PointF end)
-            : base(drawPen, start)
+        public LineShape(Color penColor, Color fillColor, double penWidth, Point start, Point end)
+            : base(penColor, fillColor, penWidth, start)
         {
             this.end = end;
         }
 
-        public override void draw(Graphics imgGra)
+        protected override Geometry buildGeometry()
         {
-            imgGra.DrawLine(this.DrawPen, this.ReferencePoint, this.end);
-        }
-
-        public override void erase(Graphics imgGra)
-        {
-            imgGra.DrawLine(this.ErasePen, this.ReferencePoint, this.end);
+            return new LineGeometry(this.ReferencePoint, this.end);
         }
 
         public override string ToString()
         {
-            return "LINE " + this.ReferencePoint + " - " + this.end;
+            return "Line" + base.ToString();
         }
 
     }

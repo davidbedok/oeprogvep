@@ -2,32 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
     public class EmptyShape : CDPShape
     {
 
-        public EmptyShape(Pen drawPen)
-            : base(drawPen, new PointF(0,0))
+        public EmptyShape() : base(Colors.Black, Colors.White, 0, new Point(0, 0))
         {
-            
+        }
+
+        protected override Geometry buildGeometry()
+        {
+            return null;
         }
 
         public override string ToString()
         {
-            return "NONE";
-        }
-
-        public override void draw(Graphics imgGra)
-        {
-            
-        }
-
-        public override void erase(Graphics imgGra)
-        {
-            
+            return "[none]";
         }
 
     }

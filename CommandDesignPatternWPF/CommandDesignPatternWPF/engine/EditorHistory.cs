@@ -18,28 +18,28 @@ namespace CommandDesignPatternWPF
             this.redoStack = new Stack<EditorCommand>();
         }
 
-        public void addCommand(Graphics imgGra, EditorCommand command)
+        public void addCommand(EditorCommand command)
         {
             this.history.Push(command);
-            command.process(imgGra);
+            command.process();
         }
 
-        public void undo(Graphics imgGra)
+        public void undo()
         {
             if (this.history.Count > 0)
             {
                 EditorCommand command = this.history.Pop();
-                command.undo(imgGra);
+                command.undo();
                 this.redoStack.Push(command);
             }
         }
 
-        public void redo(Graphics imgGra)
+        public void redo()
         {
             if (this.redoStack.Count > 0)
             {
                 EditorCommand command = this.redoStack.Pop();
-                command.process(imgGra);
+                command.process();
                 this.history.Push(command);
             }
         }

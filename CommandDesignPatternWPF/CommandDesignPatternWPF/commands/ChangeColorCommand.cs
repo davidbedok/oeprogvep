@@ -1,35 +1,32 @@
-﻿using System;
+﻿using CommandDesignPatternWPF.commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace CommandDesignPatternWPF
 {
-    public class ChangeColorCommand : EditorCommand
+    public class ChangeColorCommand : Command
     {
 
-        private CDPShape shape;
         private Color originalColor;
         private Color newColor;
 
-        public ChangeColorCommand(CDPShape shape, Color newColor)
+        public ChangeColorCommand(List<IShape> shapes, IShape shape, Color newColor) : base(shapes, shape)
         {
-            this.shape = shape;
-            this.originalColor = shape.ShapeColor;
+            this.originalColor = shape.FillColor;
             this.newColor = newColor;
         }
 
-        public void process(Graphics imgGra)
+        public override void process()
         {
-            shape.ShapeColor = newColor;
-            shape.draw(imgGra);
+            shape.FillColor = newColor;
         }
 
-        public void undo(Graphics imgGra)
+        public override void undo()
         {
-            shape.ShapeColor = originalColor;
-            shape.draw(imgGra);
+            shape.FillColor = originalColor;
         }
 
     }

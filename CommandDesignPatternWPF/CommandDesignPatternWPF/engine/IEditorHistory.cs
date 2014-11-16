@@ -8,8 +8,8 @@ namespace CommandDesignPatternWPF
 {
     public interface IEditorHistory
     {
-        void addCommand(Graphics imgGra, EditorCommand command);
-        void undo(Graphics imgGra);
-        void redo(Graphics imgGra);
+        void addCommand(EditorCommand command);
+        void undo();
+        void redo();
     }
 }
