@@ -35,7 +35,7 @@ namespace GraphWPF
         private void OpenGraph_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Graph files|*.graph";
+            dialog.Filter = "Graph files (*.graph)|*.graph";
             Nullable<Boolean> result = dialog.ShowDialog();
             if (result.HasValue && result.Value)
             {
