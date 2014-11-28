@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfApplication15.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:current="clr-namespace:WpfApplication15"
+        Title="MainWindow" Loaded="Window_Loaded" Height="536.493" Width="730.687" KeyDown="Window_KeyDown">
+    <Image>
+        <Image.Resources>
+            <current:LabirintusRajzKonverter x:Key="rajzKonverter">
+            </current:LabirintusRajzKonverter>
+            <current:JatekosRajzKonverter x:Key="jatekosRajzKonverter">
+            </current:JatekosRajzKonverter>
+        </Image.Resources>
+        <Image.Source>
+            <DrawingImage x:Name="labirintusRajz">
+                <DrawingImage.Drawing>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="Blue" Geometry="{Binding Path=Helyek, Converter={StaticResource rajzKonverter}}">
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="Red" Geometry="{Binding Path=JatekosPont, Converter={StaticResource jatekosRajzKonverter}}">
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingImage.Drawing>
+            </DrawingImage>
+        </Image.Source>
+    </Image>
+</Window>
