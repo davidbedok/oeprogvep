@@ -21,6 +21,7 @@ namespace CannonWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Random random;
         private Cannon cannon;
         private List<Bullet> bullets;
 
@@ -28,6 +29,7 @@ namespace CannonWPF
 
         public MainWindow()
         {
+            this.random = new Random();
             InitializeComponent();
             this.cannon = new Cannon(320, 240, 40);
             this.bullets = new List<Bullet>();
@@ -63,7 +65,7 @@ namespace CannonWPF
                 this.cannon.Angle += 5;
             } else if ( e.Key == Key.Space ) {
                 Bullet bullet = this.cannon.shoot();
-                this.canvas.Children.Add(bullet.build());
+                this.canvas.Children.Add(bullet.build(this.random));
                 this.bullets.Add(bullet);
             }
         }

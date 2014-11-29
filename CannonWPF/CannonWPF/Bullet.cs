@@ -14,7 +14,8 @@ namespace CannonWPF
 {
     public class Bullet : INotifyPropertyChanged
     {
-        private const double DIAMETER = 15;
+        private const double RADIUS = 7;
+        private const double DIAMETER = RADIUS * 2;
         private const double SPEED = 5;
 
         private readonly double angle;
@@ -45,7 +46,7 @@ namespace CannonWPF
 
         public Bullet(Point position, double angle)
         {
-            this.position = position;
+            this.position = new Point(position.X - RADIUS, position.Y - RADIUS);
             this.angle = angle;
         }
 
@@ -63,13 +64,13 @@ namespace CannonWPF
             }
         }
 
-        public Ellipse build()
+        public Ellipse build( Random random )
         {
             Ellipse ellipse = new Ellipse();
             ellipse.Width = DIAMETER;
             ellipse.Height = DIAMETER;
 
-            ellipse.Fill = new SolidColorBrush(Colors.Blue);
+            ellipse.Fill = new SolidColorBrush(createRandomColor(random));
             ellipse.Stroke = Brushes.Black;
             ellipse.StrokeThickness = 1;
 
@@ -82,6 +83,11 @@ namespace CannonWPF
             ellipse.SetBinding(Canvas.TopProperty, ellipseYBinding);
 
             return ellipse;
+        }
+
+        private static Color createRandomColor(Random random)
+        {
+            return Color.FromRgb((byte)random.Next(255), (byte)random.Next(255), (byte)random.Next(255));
         }
 
 
