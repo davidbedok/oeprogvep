@@ -13,6 +13,7 @@ namespace CannonWPF
 {
     public class Cannon : INotifyPropertyChanged
     {
+        private const double SHOOT_DISTANCE = 20;
 
         private readonly Point origo;
         private readonly double length;
@@ -38,7 +39,7 @@ namespace CannonWPF
         {
             get
             {
-                return this.origo.X + Math.Cos(this.angle) * this.length;
+                return this.calcX(this.length);
             }
         }
 
@@ -46,8 +47,18 @@ namespace CannonWPF
         {
             get
             {
-                return this.origo.Y - Math.Sin(this.angle) * this.length;
+                return this.calcY(this.length);
             }
+        }
+
+        private Point End
+        {
+            get { return new Point(this.calcX(this.ShootLength), this.calcY(this.ShootLength)); }
+        }
+
+        private double ShootLength
+        {
+            get { return this.length + SHOOT_DISTANCE; }
         }
 
         public Cannon(double x, double y, double length)
@@ -61,12 +72,28 @@ namespace CannonWPF
             this.length = length;
             this.angle = Math.PI;
         }
+
+        private double calcX(double length)
+        {
+            return this.origo.X + Math.Sin(this.angle) * length;
+        }
+
+        private double calcY(double length)
+        {
+            return this.origo.Y - Math.Cos(this.angle) * length;
+        }
+
         protected void onPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public Bullet shoot()
+        {
+            return new Bullet(this.End, this.angle);
         }
 
         public Line build()

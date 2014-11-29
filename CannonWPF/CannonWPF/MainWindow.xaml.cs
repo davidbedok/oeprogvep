@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CannonWPF
 {
@@ -21,27 +22,49 @@ namespace CannonWPF
     public partial class MainWindow : Window
     {
         private Cannon cannon;
+        private List<Bullet> bullets;
+
+        private readonly DispatcherTimer timer;
 
         public MainWindow()
         {
             InitializeComponent();
-            this.cannon = new Cannon(200, 200, 40);
+            this.cannon = new Cannon(320, 240, 40);
+            this.bullets = new List<Bullet>();
+
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+            timer.Tick += timerTick;
+            timer.Stop();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void timerTick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.bullets.Count; i++)
+            {
+                this.bullets[i].move();
+            }
+        }
+
+        private void WindowLoaded(object sender, RoutedEventArgs e)
         {
             this.canvas.Children.Add(this.cannon.build());
+            timer.Start();
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private void WindowKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Left)
             {
-                this.cannon.Angle += 5;
+                this.cannon.Angle -= 5;
             }
             else if (e.Key == Key.Right)
             {
-                this.cannon.Angle -= 5;
+                this.cannon.Angle += 5;
+            } else if ( e.Key == Key.Space ) {
+                Bullet bullet = this.cannon.shoot();
+                this.canvas.Children.Add(bullet.build());
+                this.bullets.Add(bullet);
             }
         }
     }
