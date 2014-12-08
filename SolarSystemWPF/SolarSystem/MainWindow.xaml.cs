@@ -17,11 +17,9 @@ using System.IO;
 
 namespace SolarSystemWPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private const String PLANETS_DATA_INPUT_FILE = "planets.txt";
         private DispatcherTimer timer = new DispatcherTimer();
         private SolarSystem solarSystem;
 
@@ -35,13 +33,17 @@ namespace SolarSystemWPF
 
         private void windowLoaded(object sender, RoutedEventArgs e)
         {
-            this.solarSystem = SolarSystem.parse("planets.txt", this.ActualWidth, this.ActualHeight);
+            this.solarSystem = SolarSystem.parse(PLANETS_DATA_INPUT_FILE, this.spaceCanvas.ActualWidth, this.spaceCanvas.ActualHeight);
+            this.image.Source = this.solarSystem.drawOrbits();
             foreach (Planet planet in this.solarSystem.Planets)
             {
                 this.spaceCanvas.Children.Add(planet.buildPlanet());
-                this.spaceCanvas.Children.Add(planet.buildMeta());
+                Label meta = planet.buildMeta();
+                if (meta != null)
+                {
+                    this.spaceCanvas.Children.Add(meta);
+                }
             }
-            this.image.Source = this.solarSystem.getOrbits();
             timer.Start();
         }
 

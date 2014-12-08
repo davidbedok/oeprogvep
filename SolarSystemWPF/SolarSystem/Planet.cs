@@ -12,21 +12,36 @@ using System.Windows.Shapes;
 
 namespace SolarSystemWPF
 {
+
     public class Planet : INotifyPropertyChanged
     {
         private readonly string name;
-        private readonly int distance;
+        private readonly double distance;
         private readonly int timeInEarthDay;
-        private double angle; // tárolás szögben, visszaadás radiánban
+        private double angle;
         private readonly double radius;
-        private readonly Point starPosition;
-        //private double xpozicio, ypozicio; EZT NEM SZABAD
-
+        private readonly SolarSystem system;
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         public String Name
         {
             get { return this.name; }
+        }
+
+        public double Distance
+        {
+            get { return this.distance; }
+        }
+
+        private double CalculatedDistance
+        {
+            get { return this.system.calculateDistance(this.distance); }
+        }
+
+        private double Radius
+        {
+            get { return this.radius / 3000; }
         }
 
         public void OnPropertyChanged(string propertyName)
@@ -42,64 +57,57 @@ namespace SolarSystemWPF
             get { return this.angle * Math.PI / 180; }
         }
 
-        public double XPozicio
+        public double PlanetX
         {
-            get { return this.starPosition.X + Math.Sin(this.AngleInRadian) * this.distance; }
+            get { return this.system.Star.X + Math.Sin(this.AngleInRadian) * this.CalculatedDistance - this.Radius; }
         }
 
-        public double YPozicio
+        public double PlanetY
         {
-            get { return this.starPosition.Y - Math.Cos(this.AngleInRadian) * this.distance; }
+            get { return this.system.Star.Y - Math.Cos(this.AngleInRadian) * this.CalculatedDistance - this.Radius; }
         }
 
-        public double XPozicioMeta
+        public double MetaX
         {
-            get { return this.XPozicio + 10; }
+            get { return this.PlanetX + 10; }
         }
 
-        public double YPozicioMeta
+        public double MetaY
         {
-            get { return this.YPozicio + 10; }
+            get { return this.PlanetY + 10; }
         }
 
-        public Planet(string name, int distance, int timeInEarthDay, double angle, double radius, Point starPosition)
+        public Planet(string name, double distance, int timeInEarthDay, double angle, double radius, SolarSystem system )
         {
             this.name = name;
-            // a 10-es osztoszamnak a a max tavolsagtol kell fuggnie
-            // max width: 600
-            // szukseges: 4497 * 2
-            // 4497-et 300-as aranyra kell szukiteni..
-            this.distance = distance / 10;
+            this.distance = distance;
             this.timeInEarthDay = timeInEarthDay;
             this.angle = angle;
             this.radius = radius;
-            this.starPosition = starPosition;
-        }
-        public Drawing getOrbit()
-        {
-            GeometryDrawing drawing = new GeometryDrawing();
-            drawing.Pen = new Pen(Brushes.Black, 1);
-            drawing.Geometry = this.buildOrbit();
-            return drawing;
+            this.system = system;
         }
 
-        private Geometry buildOrbit()
+        public Drawing drawOrbit()
         {
-            return new EllipseGeometry(this.starPosition, this.distance, this.distance);
+            GeometryDrawing drawing = new GeometryDrawing();
+            drawing.Pen = new Pen(Brushes.Gray, 1);
+            drawing.Pen.DashStyle = DashStyles.Dot;
+            drawing.Geometry = new EllipseGeometry(this.system.Star, this.CalculatedDistance, this.CalculatedDistance);
+            return drawing;
         }
 
         public Ellipse buildPlanet()
         {
             Ellipse ellipse = new Ellipse();
-            ellipse.Width = (this.radius * 2) / 3000;
-            ellipse.Height = (this.radius * 2) / 3000;
+            ellipse.Width = this.Radius * 2;
+            ellipse.Height = this.Radius * 2;
             ellipse.Fill = Brushes.MidnightBlue;
 
-            Binding xBinding = new Binding("XPozicio");
+            Binding xBinding = new Binding("PlanetX");
             xBinding.Source = this;
             ellipse.SetBinding(Canvas.LeftProperty, xBinding);
 
-            Binding yBinding = new Binding("YPozicio");
+            Binding yBinding = new Binding("PlanetY");
             yBinding.Source = this;
             ellipse.SetBinding(Canvas.TopProperty, yBinding);
 
@@ -110,17 +118,20 @@ namespace SolarSystemWPF
 
         public Label buildMeta()
         {
-            Label label = new Label();
-            label.Content = this.name;
+            Label label = null;
+            if (this.CalculatedDistance > 50)
+            {
+                label = new Label();
+                label.Content = this.name;
 
-            Binding xBinding = new Binding("XPozicioMeta");
-            xBinding.Source = this;
-            label.SetBinding(Canvas.LeftProperty, xBinding);
+                Binding xBinding = new Binding("MetaX");
+                xBinding.Source = this;
+                label.SetBinding(Canvas.LeftProperty, xBinding);
 
-            Binding yBinding = new Binding("YPozicioMeta");
-            yBinding.Source = this;
-            label.SetBinding(Canvas.TopProperty, yBinding);
-
+                Binding yBinding = new Binding("MetaY");
+                yBinding.Source = this;
+                label.SetBinding(Canvas.TopProperty, yBinding);
+            }
             return label;
         }
 
@@ -131,17 +142,17 @@ namespace SolarSystemWPF
             details.ShowDialog();
         }
 
-        public void Move(int numberOfEarthDay)
+        public void time(int numberOfEarthDay)
         {
             this.angle += 360 / (double)this.timeInEarthDay * numberOfEarthDay;
 
             if (this.angle > 360)
                 this.angle -= 360;
 
-            OnPropertyChanged("XPozicio");
-            OnPropertyChanged("YPozicio");
-            OnPropertyChanged("XPozicioMeta");
-            OnPropertyChanged("YPozicioMeta");
+            OnPropertyChanged("PlanetX");
+            OnPropertyChanged("PlanetY");
+            OnPropertyChanged("MetaX");
+            OnPropertyChanged("MetaY");
         }
 
     }
