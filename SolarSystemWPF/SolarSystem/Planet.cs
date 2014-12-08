@@ -10,7 +10,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace SolarSystem
+namespace SolarSystemWPF
 {
     public class Planet : INotifyPropertyChanged
     {
@@ -62,15 +62,31 @@ namespace SolarSystem
             get { return this.YPozicio + 10; }
         }
 
-        public Planet(string bolygoNeve, int napTavolsag, int keringesiIdo, double aktHelyzet, double egyenlitoSugar, double sunX, double sunY)
+        public Planet(string name, int distance, int timeInEarthDay, double angle, double radius, Point starPosition)
         {
-            this.name = bolygoNeve;
-            this.distance = napTavolsag / 10;
-            this.timeInEarthDay = keringesiIdo;
-            this.angle = aktHelyzet;
-            this.radius = egyenlitoSugar;
-            this.starPosition = new Point(sunX, sunY);
-        }        
+            this.name = name;
+            // a 10-es osztoszamnak a a max tavolsagtol kell fuggnie
+            // max width: 600
+            // szukseges: 4497 * 2
+            // 4497-et 300-as aranyra kell szukiteni..
+            this.distance = distance / 10;
+            this.timeInEarthDay = timeInEarthDay;
+            this.angle = angle;
+            this.radius = radius;
+            this.starPosition = starPosition;
+        }
+        public Drawing getOrbit()
+        {
+            GeometryDrawing drawing = new GeometryDrawing();
+            drawing.Pen = new Pen(Brushes.Black, 1);
+            drawing.Geometry = this.buildOrbit();
+            return drawing;
+        }
+
+        private Geometry buildOrbit()
+        {
+            return new EllipseGeometry(this.starPosition, this.distance, this.distance);
+        }
 
         public Ellipse buildPlanet()
         {

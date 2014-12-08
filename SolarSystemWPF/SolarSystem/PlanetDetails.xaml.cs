@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SolarSystem
+namespace SolarSystemWPF
 {
     /// <summary>
     /// Interaction logic for PlanetDetails.xaml

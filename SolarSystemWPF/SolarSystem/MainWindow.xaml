@@ -1,14 +1,9 @@
-﻿<Window x:Class="SolarSystem.MainWindow"
+﻿<Window x:Class="SolarSystemWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:SolarSystem"
-        Title="Solar System" Height="1100" Width="1010" Loaded="Window_Loaded_1" ResizeMode="NoResize">
-    <DockPanel>
-        <WrapPanel DockPanel.Dock="Top">
-            <Button Content="Start" Width="70" Click="Button_Start" Margin="10,5" />
-            <Button Content="Stop" Width="70" Click="Button_Stop" Margin="10,5" />
-            <Button Content="Kilépés" Width="70" Click="Button_Kilep" Margin="10,5" />
-        </WrapPanel>
-        <Canvas DockPanel.Dock="Bottom" Name="spaceCanvas" Width="1000" Height="1000" />
-    </DockPanel>    
+        xmlns:local="clr-namespace:SolarSystemWPF"
+        Title="Solar System" Height="600" Width="600" Loaded="windowLoaded" ResizeMode="NoResize">
+    <Canvas DockPanel.Dock="Bottom" Name="spaceCanvas" >
+        <Image x:Name="image" />
+    </Canvas>
 </Window>

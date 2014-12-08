@@ -7,7 +7,7 @@
     <ProjectGuid>{A013CD7A-6E3B-45B3-AE0A-F99AA5F6A325}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolarSystem</RootNamespace>
+    <RootNamespace>SolarSystemWPF</RootNamespace>
     <AssemblyName>SolarSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -56,7 +56,7 @@
     <Compile Include="PlanetDetails.xaml.cs">
       <DependentUpon>PlanetDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SolSystem.cs" />
+    <Compile Include="SolarSystem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,7 +103,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug\planets.txt" />
+    <Content Include="planets.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
