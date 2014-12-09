@@ -12,6 +12,7 @@ namespace SolarSystemWPF
 {
     public class SolarSystem
     {
+        private const double SUN_RADIUS = 2;
 
         private readonly Point star;
         private readonly List<Planet> planets;
@@ -53,14 +54,9 @@ namespace SolarSystemWPF
             }
         }
 
-        private void add(string name, double distance, int timeInEarthDay, double angle, double radius)
+        public void time(int numberOfEarthDay)
         {
-            this.add(new Planet(name, distance, timeInEarthDay, angle, radius, this));
-        }
-
-        public void Move(int numberOfEarthDay)
-        {
-            foreach (Planet planet in planets)
+            foreach (Planet planet in this.planets)
             {
                 planet.time(numberOfEarthDay);
             }
@@ -96,25 +92,17 @@ namespace SolarSystemWPF
             GeometryDrawing drawing = new GeometryDrawing();
             drawing.Pen = new Pen(Brushes.Yellow, 1);
             drawing.Brush = Brushes.Yellow;
-            drawing.Geometry = new EllipseGeometry(this.star, 5, 5);
+            drawing.Geometry = new EllipseGeometry(this.star, SolarSystem.SUN_RADIUS, SolarSystem.SUN_RADIUS);
             return drawing;
         }
 
         public static SolarSystem parse(String fileName, double systemX, double systemY)
         {
             SolarSystem result = new SolarSystem(systemX / 2, systemY / 2);
-            StreamReader sr = new StreamReader(fileName);
-            string line = "";
-            while (!sr.EndOfStream)
+            StreamReader reader = new StreamReader(fileName);
+            while (!reader.EndOfStream)
             {
-                line = sr.ReadLine();
-                String[] items = line.Split(';');
-                String name = items[0];
-                double distance = Double.Parse(items[1]);
-                int timeInEarthDay = Int32.Parse(items[2]);
-                double angle = Double.Parse(items[3]);
-                double radius = Double.Parse(items[4]);
-                result.add(name, distance, timeInEarthDay, angle, radius);
+                result.add(Planet.parse(result, reader.ReadLine()));
             }
             return result;
         }

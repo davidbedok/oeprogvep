@@ -49,7 +49,7 @@ namespace SolarSystemWPF
 
         private void timerTick(object sender, EventArgs e)
         {
-            this.solarSystem.Move(20);
+            this.solarSystem.time(20);
         }
 
     }

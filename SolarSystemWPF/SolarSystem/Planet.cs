@@ -15,13 +15,17 @@ namespace SolarSystemWPF
 
     public class Planet : INotifyPropertyChanged
     {
+        private const char DELIMITER = ';';
+        private const double CHAR_WIDTH = 8;
+
         private readonly string name;
         private readonly double distance;
         private readonly int timeInEarthDay;
         private double angle;
         private readonly double radius;
         private readonly SolarSystem system;
-        
+        private readonly Brush brush;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public String Name
@@ -44,12 +48,9 @@ namespace SolarSystemWPF
             get { return this.radius / 3000; }
         }
 
-        public void OnPropertyChanged(string propertyName)
+        private double Diameter
         {
-            if (this.PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            get { return this.Radius * 2; }
         }
 
         private double AngleInRadian
@@ -57,27 +58,27 @@ namespace SolarSystemWPF
             get { return this.angle * Math.PI / 180; }
         }
 
-        public double PlanetX
+        public double PlanetRectLeft
         {
             get { return this.system.Star.X + Math.Sin(this.AngleInRadian) * this.CalculatedDistance - this.Radius; }
         }
 
-        public double PlanetY
+        public double PlanetRectTop
         {
             get { return this.system.Star.Y - Math.Cos(this.AngleInRadian) * this.CalculatedDistance - this.Radius; }
         }
 
-        public double MetaX
+        public double MetaLabelX
         {
-            get { return this.PlanetX + 10; }
+            get { return this.PlanetRectLeft + this.Radius - (this.name.Length / 2) * Planet.CHAR_WIDTH; }
         }
 
-        public double MetaY
+        public double MetaLabelY
         {
-            get { return this.PlanetY + 10; }
+            get { return this.PlanetRectTop + this.Diameter; }
         }
 
-        public Planet(string name, double distance, int timeInEarthDay, double angle, double radius, SolarSystem system )
+        public Planet(string name, double distance, int timeInEarthDay, double angle, double radius, byte red, byte green, byte blue, SolarSystem system)
         {
             this.name = name;
             this.distance = distance;
@@ -85,6 +86,15 @@ namespace SolarSystemWPF
             this.angle = angle;
             this.radius = radius;
             this.system = system;
+            this.brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
+        }
+
+        public void OnPropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public Drawing drawOrbit()
@@ -101,18 +111,17 @@ namespace SolarSystemWPF
             Ellipse ellipse = new Ellipse();
             ellipse.Width = this.Radius * 2;
             ellipse.Height = this.Radius * 2;
-            ellipse.Fill = Brushes.MidnightBlue;
+            ellipse.Fill = this.brush;
 
-            Binding xBinding = new Binding("PlanetX");
+            Binding xBinding = new Binding("PlanetRectLeft");
             xBinding.Source = this;
             ellipse.SetBinding(Canvas.LeftProperty, xBinding);
 
-            Binding yBinding = new Binding("PlanetY");
+            Binding yBinding = new Binding("PlanetRectTop");
             yBinding.Source = this;
             ellipse.SetBinding(Canvas.TopProperty, yBinding);
 
             ellipse.MouseDown += ellipse_MouseDown;
-
             return ellipse;
         }
 
@@ -124,11 +133,11 @@ namespace SolarSystemWPF
                 label = new Label();
                 label.Content = this.name;
 
-                Binding xBinding = new Binding("MetaX");
+                Binding xBinding = new Binding("MetaLabelX");
                 xBinding.Source = this;
                 label.SetBinding(Canvas.LeftProperty, xBinding);
 
-                Binding yBinding = new Binding("MetaY");
+                Binding yBinding = new Binding("MetaLabelY");
                 yBinding.Source = this;
                 label.SetBinding(Canvas.TopProperty, yBinding);
             }
@@ -144,15 +153,34 @@ namespace SolarSystemWPF
 
         public void time(int numberOfEarthDay)
         {
+            this.changeAngle(numberOfEarthDay);
+            OnPropertyChanged("PlanetRectLeft");
+            OnPropertyChanged("PlanetRectTop");
+            OnPropertyChanged("MetaLabelX");
+            OnPropertyChanged("MetaLabelY");
+        }
+
+        private void changeAngle(int numberOfEarthDay)
+        {
             this.angle += 360 / (double)this.timeInEarthDay * numberOfEarthDay;
-
             if (this.angle > 360)
+            {
                 this.angle -= 360;
+            }
+        }
 
-            OnPropertyChanged("PlanetX");
-            OnPropertyChanged("PlanetY");
-            OnPropertyChanged("MetaX");
-            OnPropertyChanged("MetaY");
+        public static Planet parse(SolarSystem system, String line)
+        {
+            String[] items = line.Split(Planet.DELIMITER);
+            String name = items[0];
+            double distance = Double.Parse(items[1]);
+            int timeInEarthDay = Int32.Parse(items[2]);
+            double angle = Double.Parse(items[3]);
+            double radius = Double.Parse(items[4]);
+            byte red = Byte.Parse(items[5]);
+            byte green = Byte.Parse(items[6]);
+            byte blue = Byte.Parse(items[7]);
+            return new Planet(name, distance, timeInEarthDay, angle, radius, red, green, blue, system);
         }
 
     }
