@@ -22,14 +22,20 @@ namespace SolarSystemWPF
 
         public Planet Planet
         {
-            set {
-                this.grid.DataContext = value;
+            set
+            {
+                this.window.DataContext = value;
             }
         }
 
         public PlanetDetails()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
         }
     }
 }

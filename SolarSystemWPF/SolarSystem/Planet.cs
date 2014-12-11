@@ -38,9 +38,19 @@ namespace SolarSystemWPF
             get { return this.distance; }
         }
 
+        public int TimeInEarthDay
+        {
+            get { return this.timeInEarthDay; }
+        }
+
         private double CalculatedDistance
         {
             get { return this.system.calculateDistance(this.distance); }
+        }
+
+        public double OriginalRadius
+        {
+            get { return this.radius; }
         }
 
         private double Radius
@@ -51,6 +61,11 @@ namespace SolarSystemWPF
         private double Diameter
         {
             get { return this.Radius * 2; }
+        }
+
+        public double Angle
+        {
+            get { return this.angle; }
         }
 
         private double AngleInRadian
