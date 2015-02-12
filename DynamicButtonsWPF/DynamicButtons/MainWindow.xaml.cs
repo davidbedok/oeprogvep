@@ -15,25 +15,27 @@ using System.Windows.Shapes;
 
 namespace DynamicButtons
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private const int NUMBER_OF_COLUMNS = 3;
+        private const int NUMBER_OF_ROWS = 4;
         public MainWindow()
         {
             InitializeComponent();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NUMBER_OF_COLUMNS; i++)
             {
                 this.mainGrid.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+            for (int i = 0; i < NUMBER_OF_ROWS; i++)
+            {
                 this.mainGrid.RowDefinitions.Add(new RowDefinition());
             }
 
             int number = 1;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NUMBER_OF_ROWS; i++)
             {
-                for (int k = 0; k < 3; k++)
+                for (int k = 0; k < NUMBER_OF_COLUMNS; k++)
                 {
                     Button button = new Button();
                     button.Margin = new Thickness(10, 10, 10, 10);
@@ -41,14 +43,22 @@ namespace DynamicButtons
                     button.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
                     button.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                     button.Content = number++;
-                    
+                    button.Click += button_Click;
+
                     Grid.SetColumn(button, k);
                     Grid.SetRow(button, i);
                     this.mainGrid.Children.Add(button);
                 }
-
             }
+        }
 
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button)
+            {
+                Button button = (Button)sender;
+                MessageBox.Show(button.Content.ToString());
+            }
         }
     }
 }
