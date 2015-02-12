@@ -13,8 +13,7 @@ namespace SolarSystemWPF
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double sliderValue = (double)value;
-            return Math.Round(sliderValue, 3);
+            return Math.Round((double)value, 3);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

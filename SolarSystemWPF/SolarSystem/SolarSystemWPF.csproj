@@ -56,7 +56,7 @@
     <Compile Include="PlanetDetails.xaml.cs">
       <DependentUpon>PlanetDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SliderValueConverter.cs" />
+    <Compile Include="DoubleValueConverter.cs" />
     <Compile Include="SolarSystem.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
