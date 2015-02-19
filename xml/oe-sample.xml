@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="oe-sample.xsl" ?>
+<ts:sample xmlns:ts="urn:hu.qwaevisz.schema.oe.sample:1">
+	
+	<ts:movie id="432" release="1998">
+		<ts:title>Lock, Stock and Two Smoking Barrels</ts:title>
+		<ts:category>Comedy</ts:category>
+		<ts:description>A botched card game in London triggers four friends, thugs, weed-growers, hard gangsters, loan sharks and debt collectors to collide with each other in a series of unexpected events, all for the sake of weed, cash and two antique shotguns.</ts:description>
+		<ts:director>Guy Ritchie</ts:director>
+		<ts:writer>Guy Ritchie</ts:writer>
+		<ts:actors>
+			<ts:actor id="6323">
+				<ts:name>Jason Flemyng</ts:name>
+				<ts:character>Tom</ts:character>
+			</ts:actor>
+			<ts:actor id="732">
+				<ts:name>Dexter Fletcher</ts:name>
+				<ts:character>Soap</ts:character>
+			</ts:actor>
+		</ts:actors>
+	</ts:movie>
+	
+	<ts:movie id="265" release="1995">
+		<ts:title>Twelve Monkeys</ts:title>
+		<ts:category>Sci-Fi</ts:category>
+		<ts:description>In a future world devastated by disease, a convict is sent back in time to gather information about the man-made virus that wiped out most of the human population on the planet.</ts:description>
+		<ts:director>Terry Gilliam</ts:director>
+		<ts:writer>Chris Marker</ts:writer>
+		<ts:actors>
+			<ts:actor id="1346">
+				<ts:name>Joseph Melito</ts:name>
+				<ts:character>Young Cole</ts:character>
+			</ts:actor>
+			<ts:actor id="2332">
+				<ts:name>Bruce Willis</ts:name>
+				<ts:character>James Cole</ts:character>
+			</ts:actor>
+			<ts:actor id="865">
+				<ts:name>Jon Seda</ts:name>
+				<ts:character>Jose</ts:character>
+			</ts:actor>
+		</ts:actors>
+	</ts:movie>
+	
+</ts:sample>

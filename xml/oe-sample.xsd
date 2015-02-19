@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns="urn:hu.qwaevisz.schema.oe.sample:1"
+	targetNamespace="urn:hu.qwaevisz.schema.oe.sample:1">
+
+	<xsd:element name="sample" type="sampleType" />
+
+	<xsd:complexType name="sampleType">
+		<xsd:sequence>
+			<xsd:element name="movie" type="movieType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="movieType">
+		<xsd:sequence>
+			<xsd:element name="title" type="xsd:string" use="required" />
+			<xsd:element name="category" type="categoryType" use="required" />
+			<xsd:element name="description" type="xsd:string" use="required" />
+			<xsd:element name="director" type="xsd:string" />
+			<xsd:element name="writer" type="xsd:string" />
+			<xsd:element name="actors" type="actorsType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xs:integer" use="required" />
+		<xsd:attribute name="release" type="xs:integer" use="required" />
+	</xsd:complexType>
+	
+	<xsd:simpleType name="categoryType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Action"/>
+			<xsd:enumeration value="Comedy"/>
+			<xsd:enumeration value="Crime"/>
+			<xsd:enumeration value="Romance"/>
+			<xsd:enumeration value="Sci-Fi"/>
+			<xsd:enumeration value="Thriller"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="actorsType">
+		<xsd:sequence>
+			<xsd:element name="actor" type="actorType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="actorType">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" use="required" />
+			<xsd:element name="character" type="xsd:string" use="required" />
+		</xsd:sequence>
+		<xsd:attribute name="release" type="xs:integer" use="required" />
+	</xsd:complexType>
+
+</xsd:schema>
