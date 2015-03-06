@@ -18,6 +18,7 @@ namespace EventsWPF
         private int progress = 0;
 
         public event EventHandler commonEvent;
+        public event EventHandler<CustomEventArgs> customEvent;
         public event FeaturedProgressHandler featuredProgressEvent;
 
         public int Progress
@@ -52,6 +53,10 @@ namespace EventsWPF
                 if (this.commonEvent != null)
                 {
                     this.commonEvent(this, EventArgs.Empty);
+                }
+                if (this.customEvent != null)
+                {
+                    this.customEvent(this, new CustomEventArgs(42));
                 }
             }
         }

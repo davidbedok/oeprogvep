@@ -30,7 +30,7 @@ namespace EventsWPF
         {
             InitializeComponent();
             this.random = new Random();
-            this.people = new String[]{"Steve", "Joe", "Sue", "Stephen"};
+            this.people = new String[] { "Steve", "Joe", "Sue", "Stephen" };
             this.actions = new String[] { "test", "implement", "review", "repair", "refactor" };
         }
 
@@ -43,6 +43,7 @@ namespace EventsWPF
             this.process.featuredProgressEvent += process_featuredProgressEvent;
 
             this.process.commonEvent += new EventHandler(this.other_process_commonEvent);
+            this.process.customEvent += process_customEvent;
             this.process.featuredProgressEvent += delegate
             {
                 MessageBox.Show("From Anonymous method!");
@@ -52,6 +53,11 @@ namespace EventsWPF
             this.pbDemo.Maximum = maximum;
             this.bStep.IsEnabled = true;
             this.bStart.IsEnabled = false;
+        }
+
+        private void process_customEvent(object sender, CustomEventArgs e)
+        {
+            MessageBox.Show(e.Custom + "");
         }
 
         private void process_featuredProgressEvent(double progressPercent, string message)
@@ -89,7 +95,8 @@ namespace EventsWPF
             }
         }
 
-        private String getActor() {
+        private String getActor()
+        {
             return this.people[this.random.Next(this.people.Length)];
         }
 
