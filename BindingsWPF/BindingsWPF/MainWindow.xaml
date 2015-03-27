@@ -18,6 +18,12 @@
             <Label Content="Without binding." FontWeight="Bold" Margin="0,0,10,0"/>
             <Slider x:Name="sWithoutBinding" Width="255" Value="5" ValueChanged="generalWay_ValueChanged"/>
             <Label x:Name="lWithoutBinding" Content="label" />
+            <Label Content="{x:Static local:Brand.ROVER}" />
+            <!--
+            <Label Content="{x:Static local:Utility.SCVALUE}" />
+            <Label Content="{x:Static local:Utility.ICVALUE}" />
+            <Label Content="{x:Static local:Utility.SVALUE}" />
+            <Label Content="{x:Static local:Utility.IVALUE}" /> -->
         </WrapPanel>
         <WrapPanel Margin="20,10" Grid.Row="1">
             <Label Content="Simple binding with Converter." FontWeight="Bold" Margin="0,0,10,0"/>
