@@ -24,5 +24,15 @@ namespace ShapeWPF
         {
             InitializeComponent();
         }
+
+        private void Ellipse_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (sender is Ellipse)
+            {
+                Ellipse ellipse = (Ellipse)sender;
+                double uniformLength = ellipse.Margin.Left;
+                ellipse.Margin = new Thickness(uniformLength + e.Delta / 100);
+            }
+        }
     }
 }
