@@ -32,7 +32,7 @@ namespace TimerApp
         {
             get
             {
-                return this.radius * 2 + 1;
+                return this.radius * 2;
             }
         }
 
@@ -41,7 +41,7 @@ namespace TimerApp
             get { return this.point.X; }
             set
             {
-                if (value > 0 && value < this.frame.Width - Diameter)
+                if (value > 0 && value < this.frame.Width - Diameter +1)
                 {
                     this.point.X = value;
                     onPropertyChanged("X");
@@ -58,7 +58,7 @@ namespace TimerApp
             get { return this.point.Y; }
             set
             {
-                if (value > 0 && value < this.frame.Height - this.Diameter)
+                if (value > 0 && value < this.frame.Height - this.Diameter + 1)
                 {
                     this.point.Y = value;
                     onPropertyChanged("Y");
@@ -110,8 +110,8 @@ namespace TimerApp
             ellipseYBinding.Source = this;
             ellipse.SetBinding(Canvas.TopProperty, ellipseYBinding);
 
-            ellipse.Width = this.radius * 2;
-            ellipse.Height = this.radius * 2;
+            ellipse.Width = this.Diameter;
+            ellipse.Height = this.Diameter;
 
             return ellipse;
         }
