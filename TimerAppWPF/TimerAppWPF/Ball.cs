@@ -24,8 +24,8 @@ namespace TimerApp
         private readonly double speed;
         private readonly double radius;
 
-        private Point point;
-        private double angle;
+        private Point point; // TopLeft (sorry, this is not the origo, but it has to be that one!)
+        private double angle; // radian
 
         public event PropertyChangedEventHandler PropertyChanged;
         private double Diameter
@@ -41,7 +41,7 @@ namespace TimerApp
             get { return this.point.X; }
             set
             {
-                if (value > 0 && value < this.frame.Width - Diameter +1)
+                if (value > 0 && value < this.frame.Width - Diameter + 1)
                 {
                     this.point.X = value;
                     onPropertyChanged("X");

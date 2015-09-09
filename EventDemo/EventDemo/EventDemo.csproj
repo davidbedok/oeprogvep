@@ -43,11 +43,19 @@
   <ItemGroup>
     <Compile Include="Boss.cs" />
     <Compile Include="BossDoneHandler.cs" />
+    <Compile Include="Common\StatusChangeEmailHandler.cs" />
+    <Compile Include="Multi\Task.cs" />
+    <Compile Include="Common\StatusChangeEvent.cs" />
+    <Compile Include="Common\StatusChangeHandler.cs" />
+    <Compile Include="Simple\Task.cs" />
+    <Compile Include="Common\TaskStatus.cs" />
     <Compile Include="DoneEvent.cs" />
     <Compile Include="DoneHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sugar\SimplifiedStatusChangeHandler.cs" />
+    <Compile Include="Sugar\Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

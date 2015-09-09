@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EventDemo
 {
 
-    public delegate void FeaturedProgressHandler( int progress, String lastAtion );
+    public delegate void FeaturedProgressHandler(int progress, String lastAtion);
 
     public class Process
     {
@@ -26,20 +26,20 @@ namespace EventDemo
             this.dones = new List<DoneEvent>();
         }
 
-        public void bind( DoneEvent done )
+        public void bind(DoneEvent done)
         {
             this.dones.Add(done);
         }
 
-        public void unBind( DoneEvent done )
+        public void unBind(DoneEvent done)
         {
             this.dones.Remove(done);
         }
 
-        public void step( int valuePercent, String action )
+        public void step(int valuePercent, String action)
         {
             this.progressPercent += valuePercent;
-            Console.WriteLine("---=== Action: " + action + " (overall progress: "+this.progressPercent+"%) ===---");
+            Console.WriteLine("---=== Action: " + action + " (overall progress: " + this.progressPercent + "%) ===---");
             if (this.progressPercent >= Process.FEATURED_PROGRESS)
             {
                 /*

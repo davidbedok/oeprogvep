@@ -36,8 +36,8 @@ namespace TimerApp
         public Rectangle getRect()
         {
             Rectangle rect = new Rectangle();
-            rect.Width = this.width - 1;
-            rect.Height = this.height - 1;
+            rect.Width = this.width;
+            rect.Height = this.height;
             rect.Stroke = Brushes.Black;
             return rect;
         }
