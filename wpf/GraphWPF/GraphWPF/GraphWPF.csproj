@@ -65,6 +65,8 @@
     <Compile Include="Model\GraphEdge.cs" />
     <Compile Include="Model\Graph.cs" />
     <Compile Include="Exception\GraphParseException.cs" />
+    <Compile Include="Model\GraphElement.cs" />
+    <Compile Include="Model\GraphParser.cs" />
     <Compile Include="Model\GraphPoint.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

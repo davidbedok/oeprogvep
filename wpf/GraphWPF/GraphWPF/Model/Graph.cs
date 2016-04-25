@@ -12,33 +12,26 @@ namespace GraphWPF.Model
     public class Graph
     {
 
-        private List<GraphPoint> points;
-        private List<GraphEdge> edges;
+        private List<GraphElement> elements;
 
         public Graph()
         {
-            this.points = new List<GraphPoint>();
-            this.edges = new List<GraphEdge>();
+            this.elements = new List<GraphElement>();
         }
 
-        public void add(GraphPoint point)
+        public void add(GraphElement element)
         {
-            this.points.Add(point);
-        }
-
-        public void add(GraphEdge edge)
-        {
-            this.edges.Add(edge);
+            this.elements.Add(element);
         }
 
         public GraphPoint getPoint(int id)
         {
             int i = 0;
-            while (i < this.points.Count && this.points[i].Id != id)
+            while (i < this.elements.Count && this.elements[i] is GraphPoint && ((GraphPoint)this.elements[i]).Id != id)
             {
                 i++;
             }
-            return (i < this.points.Count ? this.points[i] : null);
+            return (i < this.elements.Count ? (GraphPoint)this.elements[i] : null);
         }
 
         public DrawingImage getImage()
@@ -49,13 +42,9 @@ namespace GraphWPF.Model
         private Drawing buildDrawing()
         {
             DrawingGroup group = new DrawingGroup();
-            for (int i = 0; i < this.points.Count; i++)
+            foreach (GraphElement element in this.elements)
             {
-                group.Children.Add(this.points[i].buildDrawing());
-            }
-            for (int i = 0; i < this.edges.Count; i++)
-            {
-                group.Children.Add(this.edges[i].buildDrawing());
+                group.Children.Add(element.buildDrawing());
             }
             return group;
         }
@@ -67,11 +56,11 @@ namespace GraphWPF.Model
             {
                 String directory = Path.GetDirectoryName(fileName);
                 String baseFileName = Path.GetFileNameWithoutExtension(fileName);
-                String pointsFileName = GraphPoint.buildPath(directory, baseFileName);
-                String edgesFileName = GraphEdge.buildPath(directory, baseFileName);
+                String pointsFileName = GraphElement.buildPath(directory, baseFileName, GraphPoint.EXTENSION);
+                String edgesFileName = GraphElement.buildPath(directory, baseFileName, GraphEdge.EXTENSION);
 
-                GraphPoint.load(pointsFileName, graph);
-                GraphEdge.load(edgesFileName, graph);
+                GraphElement.load(pointsFileName, graph, GraphPoint.parse);
+                GraphElement.load(edgesFileName, graph, GraphEdge.parse);
             }
             catch (System.Exception e)
             {

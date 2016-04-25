@@ -11,11 +11,11 @@ using GraphWPF.Exception;
 
 namespace GraphWPF.Model
 {
-    public class GraphPoint
+    public class GraphPoint : GraphElement
     {
 
-        private const String FILE_EXTENSION = ".points";
-        private const char DELIMITER = ';';
+        public const String EXTENSION = ".points";
+
         private const double FONT_SIZE = 10;
         private static readonly Typeface FONT_FAMILY = new Typeface("Tahoma");
         private static readonly Brush FONT_COLOR = Brushes.Black;
@@ -36,6 +36,11 @@ namespace GraphWPF.Model
             get { return this.position; }
         }
 
+        protected override double PenThickness
+        {
+            get { return 1; }
+        }
+
         private Rect Rect
         {
             get
@@ -54,16 +59,12 @@ namespace GraphWPF.Model
             this.color = Color.FromRgb(red, green, blue);
         }
 
-        public Drawing buildDrawing()
+        protected override Brush getBrush()
         {
-            GeometryDrawing drawing = new GeometryDrawing();
-            drawing.Pen = new Pen(Brushes.Black, 1);
-            drawing.Brush = new SolidColorBrush(this.color);
-            drawing.Geometry = buildGeometry();
-            return drawing;
+            return new SolidColorBrush(this.color);
         }
 
-        private GeometryGroup buildGeometry()
+        protected override Geometry buildGeometry()
         {
             GeometryGroup group = new GeometryGroup();
             group.Children.Add(getGeometryPoint());
@@ -78,10 +79,14 @@ namespace GraphWPF.Model
 
         private Geometry getGeometryName()
         {
-            FormattedText text = GraphPoint.getText(this.name);
+            FormattedText text = getText(this.name);
             double x = this.position.X - text.Width / 2;
             double y = this.position.Y + this.radius + 2;
             return text.BuildGeometry(new Point(x, y));
+        }
+        private static FormattedText getText(String value)
+        {
+            return new FormattedText(value, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, FONT_FAMILY, FONT_SIZE, FONT_COLOR);
         }
 
         public override string ToString()
@@ -89,55 +94,20 @@ namespace GraphWPF.Model
             return this.name + " (" + this.id + ")";
         }
 
-        private static FormattedText getText(String value)
-        {
-            return new FormattedText(value, CultureInfo.CurrentCulture, FlowDirection.LeftToRight, FONT_FAMILY, FONT_SIZE, FONT_COLOR);
-        }
-
-        public static String buildPath(String directory, String baseFileName)
-        {
-            return directory + Path.DirectorySeparatorChar + baseFileName + GraphPoint.FILE_EXTENSION;
-        }
-
-        public static void load(string fileName, Graph graph)
-        {
-            StreamReader reader = null;
-            try
-            {
-                reader = new StreamReader(File.Open(fileName, FileMode.Open));
-                String line = "";
-                while ((line = reader.ReadLine()) != null)
-                {
-                    graph.add(GraphPoint.parse(line));
-                }
-            }
-            catch (System.Exception e)
-            {
-                throw new BadFileFormatException("Unexpected error while parsing '" + fileName + "'.", e);
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-            }
-        }
-
-        private static GraphPoint parse(String line)
+        public static GraphPoint parse(Graph graph, String line)
         {
             try
             {
-                string[] lineItem = line.Split(GraphPoint.DELIMITER);
+                string[] items = line.Split(DELIMITER);
                 return new GraphPoint(
-                                Convert.ToInt32(lineItem[0]),
-                                lineItem[1],
-                                Convert.ToDouble(lineItem[2]),
-                                Convert.ToDouble(lineItem[3]),
-                                Convert.ToDouble(lineItem[4]),
-                                Convert.ToByte(lineItem[5]),
-                                Convert.ToByte(lineItem[6]),
-                                Convert.ToByte(lineItem[7]));
+                                Convert.ToInt32(items[0]),
+                                items[1],
+                                Convert.ToDouble(items[2]),
+                                Convert.ToDouble(items[3]),
+                                Convert.ToDouble(items[4]),
+                                Convert.ToByte(items[5]),
+                                Convert.ToByte(items[6]),
+                                Convert.ToByte(items[7]));
             }
             catch (System.Exception e)
             {

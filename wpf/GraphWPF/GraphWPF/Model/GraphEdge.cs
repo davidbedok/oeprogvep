@@ -9,14 +9,19 @@ using GraphWPF.Exception;
 
 namespace GraphWPF.Model
 {
-    public class GraphEdge
+    public class GraphEdge : GraphElement
     {
-        private const String FILE_EXTENSION = ".edges";
-        private const char DELIMITER = ';';
+
+        public const String EXTENSION = ".edges";
 
         private readonly GraphPoint start;
         private readonly GraphPoint end;
         private readonly double width;
+
+        protected override double PenThickness
+        {
+            get { return this.width; }
+        }
 
         public GraphEdge(GraphPoint start, GraphPoint end, double width)
         {
@@ -25,15 +30,12 @@ namespace GraphWPF.Model
             this.width = width;
         }
 
-        public Drawing buildDrawing()
+        protected override Brush getBrush()
         {
-            GeometryDrawing drawing = new GeometryDrawing();
-            drawing.Pen = new Pen(Brushes.Black, this.width);
-            drawing.Geometry = buildEdge();
-            return drawing;
+            return null;
         }
 
-        private Geometry buildEdge()
+        protected override Geometry buildGeometry()
         {
             return new LineGeometry(this.start.Position, this.end.Position);
         }
@@ -43,45 +45,15 @@ namespace GraphWPF.Model
             return "[" + start + "]-[" + end + "] (" + width + ")";
         }
 
-        public static String buildPath(String directory, String baseFileName)
-        {
-            return directory + Path.DirectorySeparatorChar + baseFileName + GraphEdge.FILE_EXTENSION;
-        }
-
-        public static void load(string fileName, Graph graph)
-        {
-            StreamReader reader = null;
-            try
-            {
-                reader = new StreamReader(File.Open(fileName, FileMode.Open));
-                String line = "";
-                while ((line = reader.ReadLine()) != null)
-                {
-                    graph.add(GraphEdge.parse(graph, line));
-                }
-            }
-            catch (System.Exception e)
-            {
-                throw new BadFileFormatException("Unexpected error while parsing '" + fileName + "'.", e);
-            }
-            finally
-            {
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-            }
-        }
-
-        private static GraphEdge parse(Graph graph, String line)
+        public static GraphEdge parse(Graph graph, String line)
         {
             try
             {
-                string[] lineItem = line.Split(GraphEdge.DELIMITER);
+                string[] items = line.Split(DELIMITER);
                 return new GraphEdge(
-                            graph.getPoint(Convert.ToInt32(lineItem[0])),
-                            graph.getPoint(Convert.ToInt32(lineItem[1])),
-                            Convert.ToDouble(lineItem[2]));
+                            graph.getPoint(Convert.ToInt32(items[0])),
+                            graph.getPoint(Convert.ToInt32(items[1])),
+                            Convert.ToDouble(items[2]));
             }
             catch (System.Exception e)
             {
@@ -90,4 +62,5 @@ namespace GraphWPF.Model
         }
 
     }
+
 }
